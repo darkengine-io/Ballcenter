@@ -11,4 +11,4 @@
 #define CENTER_THRESH 20
 #define MIN_RADIUS 0
 #define MAX_RADIUS 0
-const int MIN_DIST = HEIGHT / 8;
+#define MIN_DIST HEIGHT / 8
