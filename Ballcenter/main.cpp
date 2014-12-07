@@ -2,20 +2,19 @@
 #include "opencv2/imgproc/imgproc.hpp"
 #include <iostream>
 #include <stdio.h>
-#include <windows.h>
+#include "const.h"
 
 using namespace cv;
 
-/** @function main */
 int main(int argc, char** argv)
 {
 	Mat src, src_gray;
 
 	VideoCapture cam(0);
-	//cam.set(CV_CAP_PROP_FRAME_HEIGHT, 1024);
-	//cam.set(CV_CAP_PROP_FRAME_WIDTH, 768);
+	cam.set(CV_CAP_PROP_FRAME_HEIGHT, 1024);
+	cam.set(CV_CAP_PROP_FRAME_WIDTH, 768);
 
-	namedWindow("Hough Circle Transform Demo", CV_WINDOW_AUTOSIZE);
+	namedWindow(MAIN_WIN, CV_WINDOW_AUTOSIZE);
 	while (true){
 		cam >> src;
 		/// Convert it to gray
@@ -27,7 +26,7 @@ int main(int argc, char** argv)
 		vector<Vec3f> circles;
 
 		/// Apply the Hough Transform to find the circles
-		HoughCircles(src_gray, circles, CV_HOUGH_GRADIENT, 1, src_gray.rows / 8, 200, 100, 0, 0);
+		HoughCircles(src_gray, circles, CV_HOUGH_GRADIENT, 1, MIN_DIST, UPPER_EDGE, CENTER_THRESH, MIN_RADIUS, MAX_RADIUS);
 
 		/// Draw the circles detected
 		for (size_t i = 0; i < circles.size(); i++)
@@ -39,7 +38,7 @@ int main(int argc, char** argv)
 			// circle outline
 			circle(src, center, radius, Scalar(0, 0, 255), 3, 8, 0);
 		}
-		imshow("Hough Circle Transform Demo", src);
+		imshow(MAIN_WIN, src);
 		if (waitKey(1) >= 0) break;
 	}
 	return 0;
