@@ -3,17 +3,21 @@
 #include <iostream>
 #include <stdio.h>
 #include "const.h"
+#include "debug.h"
 
 using namespace cv;
 
 int main(int argc, char** argv)
 {
+	dp("Starting");
 	Mat src, src_gray;
 
+	dp("Setting up capture");
 	VideoCapture cam(0);
 	cam.set(CV_CAP_PROP_FRAME_HEIGHT, 1024);
 	cam.set(CV_CAP_PROP_FRAME_WIDTH, 768);
 
+	dp("Opening windows");
 	namedWindow(MAIN_WIN, CV_WINDOW_AUTOSIZE);
 	while (true){
 		cam >> src;
@@ -27,7 +31,7 @@ int main(int argc, char** argv)
 
 		/// Apply the Hough Transform to find the circles
 		HoughCircles(src_gray, circles, CV_HOUGH_GRADIENT, 1, MIN_DIST, UPPER_EDGE, CENTER_THRESH, MIN_RADIUS, MAX_RADIUS);
-
+		dp("Circles: " + std::to_string(circles.size()));
 		/// Draw the circles detected
 		for (size_t i = 0; i < circles.size(); i++)
 		{
