@@ -58,6 +58,9 @@ namespace bc {
 
 			circle(out_src, center, radius, Scalar(CIRCLE_COLOR), 3, 8, 0);
 		}
+#if S_HEIGHT !=  OUT_HEIGHT || S_WIDTH != OUT_WIDTH
+		resize(out_src, out_src, Size(OUT_WIDTH, OUT_HEIGHT));
+#endif
 		frun(text_ovl(src, std::to_string((int)fps_end("loop")) + " fps", Point(0,15)));
 		imshow(MAIN_WIN, src);
 		imshow(OUT_WIN, out_src);
