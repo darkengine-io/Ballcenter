@@ -37,7 +37,9 @@ namespace bc {
 		vector<Vec3f> circles;
 
 		/// Apply the Hough Transform to find the circles
+		ts("circle");
 		HoughCircles(input_gray, circles, CV_HOUGH_GRADIENT, 1, MIN_DIST, UPPER_EDGE, CENTER_THRESH, MIN_RADIUS, MAX_RADIUS);
+		te("circle");
 		return circles;
 	}
 	void draw_circles(vector<Vec3f> circles){
