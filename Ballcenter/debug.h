@@ -1,5 +1,5 @@
 // This file defines a function called dp which will only evaluate its parameters when debug is set to true
-#define debug true
+#define debug false
 #define fps true
 
 #define drun(code) if(debug){code;}
