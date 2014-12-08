@@ -9,7 +9,7 @@
 #define fps_start(comment) if(fps){timer_start(comment);}
 #define te(comment) drun(timer_end(comment, true))
 
-#define text_ovl(src, text, location) putText(src, text, location, FONT_HERSHEY_COMPLEX_SMALL, 0.8, Scalar(255, 0, 100))
+#define text_ovl(src, text, location, color) putText(src, text, location, FONT_HERSHEY_COMPLEX_SMALL, 0.8, color)
 
 bool dprint(std::string out);
 void timer_start(std::string comment);
