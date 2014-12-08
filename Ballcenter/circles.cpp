@@ -46,7 +46,7 @@ namespace bc {
 	}
 	void draw_circles(vector<Vec3f> circles){
 		out_src = Mat::zeros(HEIGHT, WIDTH, CV_8UC3);
-		out_src = Scalar(255, 0, 0);
+		out_src = Scalar(OUT_BG);
 		for (size_t i = 0; i < circles.size(); i++)
 		{
 			Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));

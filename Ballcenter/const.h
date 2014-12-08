@@ -6,6 +6,7 @@
 #define MAIN_WIN "Ballcenter"
 #define OUT_WIN "Output"
 #define CIRCLE_COLOR 0, 100, 0
+#define OUT_BG 255, 0, 0
 
 // Hough constants
 #define UPPER_EDGE 135
