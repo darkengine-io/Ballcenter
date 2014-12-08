@@ -25,6 +25,8 @@ namespace bc {
 	}
 	void get_frame(){
 		cam >> src;
+		src = src(Rect(225,197,266, 197));
+		resize(src, src, Size(640, 480));
 	}
 	vector<Vec3f> find_circles(){
 		Mat input_gray;
