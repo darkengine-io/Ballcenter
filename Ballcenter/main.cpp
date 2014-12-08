@@ -20,7 +20,7 @@ int main(int argc, char** argv)
 	namedWindow(MAIN_WIN, CV_WINDOW_AUTOSIZE);
 	namedWindow(OUT_WIN, CV_WINDOW_AUTOSIZE);
 	while (true){
-		ts("loop");
+		fps_start("loop");
 		bc::get_frame();
 		
 		bc::draw_circles(bc::find_circles());
@@ -28,7 +28,6 @@ int main(int argc, char** argv)
 
 		//imshow(MAIN_WIN, src);
 		if (waitKey(1) >= 0) break;
-		te("loop");
 		dp("--------------------");
 	}
 	return 0;
