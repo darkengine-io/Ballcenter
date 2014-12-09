@@ -12,23 +12,7 @@ Mat src;
 Mat out_src;
 
 namespace bc {
-	bool open(int id){
-		cam = VideoCapture(id);
-		cam.set(CV_CAP_PROP_FRAME_HEIGHT, IN_HEIGHT);
-		cam.set(CV_CAP_PROP_FRAME_WIDTH, IN_WIDTH);
-		if (!cam.isOpened()){
-			return 0;
-		}
-		else{
-			return 1;
-		}
-	}
-	void get_frame(){
-		cam >> src;
-		src = src(Rect(225,197,266, 197));
-		resize(src, src, Size(S_WIDTH, S_HEIGHT));
-	}
-	vector<Vec3f> find_circles(){
+	vector<Vec3f> find_circles(Mat src){
 		Mat input_gray;
 		/// Convert it to gray
 		cvtColor(src, input_gray, CV_BGR2GRAY);
@@ -44,7 +28,7 @@ namespace bc {
 		te("circle");
 		return circles;
 	}
-	void draw_circles(vector<Vec3f> circles){
+	void draw_circles(vector<Vec3f> circles, Mat src){
 		out_src = Mat::zeros(S_HEIGHT, S_WIDTH, CV_8UC3);
 		out_src = Scalar(OUT_BG);
 		for (size_t i = 0; i < circles.size(); i++)

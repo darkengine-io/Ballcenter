@@ -66,11 +66,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="camera.cpp" />
     <ClCompile Include="circles.cpp" />
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="camera.h" />
     <ClInclude Include="circles.h" />
     <ClInclude Include="const.h" />
     <ClInclude Include="debug.h" />
