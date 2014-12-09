@@ -10,28 +10,80 @@ using namespace cv;
 
 namespace cal{
 	void wait_for_key();
+	vector<Point> find_smallest_square(const vector<vector<Point> >& squares);
 	void findSquares(const Mat& image, vector<vector<Point> >& squares);
 
 	Mat src, out;
-	void calibrate(Camera cam){
+
+	void drawSquare(Mat& image, const vector<Point>& square, Scalar color){
+		const Point* p = &square[0];
+		int n = (int)square.size();
+		polylines(image, &p, &n, 1, true, color, 3);
+	}
+
+	// the function draws all the squares in the image
+	void drawSquares(Mat& image, const vector<vector<Point> >& squares, Scalar color)
+	{
+		for (size_t i = 0; i < squares.size(); i++)
+		{
+			drawSquare(image, squares[i], color);
+		}
+	}
+
+	void calibrate(Camera& cam){
 		namedWindow(CAL_WIN, CV_WINDOW_AUTOSIZE);
 		out = Mat::zeros(OUT_HEIGHT, OUT_WIDTH, CV_8UC3);
 		imshow(CAL_WIN, out);
 		wait_for_key();
 
-		rectangle(out, Rect(0, 0, 50, 50), Scalar(255, 255, 255), -1);
+		//rectangle(out, Rect(0, 0, 100, 100), Scalar(255, 255, 255), -1);
+		out = Scalar(255, 255, 255);
 		imshow(CAL_WIN, out);
 		wait_for_key();
 
 		cam.get_raw_frame();
+		cam.get_raw_frame();
 		vector<vector<Point>> squares;
- 		findSquares(cam.src, squares);
-
+		findSquares(cam.src, squares);
+		drawSquares(cam.src, squares, Scalar(0, 255, 0));
+		vector<Point> smallest_square = find_smallest_square(squares);
+		drawSquare(cam.src, smallest_square, Scalar(255, 0, 0));
+		imshow(CAL_WIN, cam.src);
+		wait_for_key();
+		
+		cam.aoi = boundingRect(Mat(smallest_square));
 		destroyWindow(CAL_WIN);
 	}
 
 	void wait_for_key(){
 		while (waitKey(10) < 0);
+	}
+
+	vector<Point> find_smallest_square(const vector<vector<Point> >& squares)
+	{
+		vector<Point> biggest_square;
+
+		int min_area = 65535;
+		int max_square_idx = 0;
+		const int n_points = 4;
+
+		for (size_t i = 0; i < squares.size(); i++)
+		{
+			// Convert a set of 4 unordered Points into a meaningful cv::Rect structure.
+			Rect rectangle = boundingRect(Mat(squares[i]));
+
+			//        cout << "find_largest_square: #" << i << " rectangle x:" << rectangle.x << " y:" << rectangle.y << " " << rectangle.width << "x" << rectangle.height << endl;
+
+			// Store the index position of the biggest square found
+			if (rectangle.area() < min_area)
+			{
+				min_area = rectangle.area();
+				max_square_idx = i;
+			}
+		}
+
+		biggest_square = squares[max_square_idx];
+		return biggest_square;
 	}
 
 	// helper function:
