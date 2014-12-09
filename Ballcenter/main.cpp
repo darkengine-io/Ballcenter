@@ -18,6 +18,9 @@ int main(int argc, char** argv)
 
 	dp("Setting up capture");
 	cam.open(0);
+	
+	dp("Calibrating");
+	cal::calibrate(cam);
 
 	dp("Opening windows");
 	namedWindow(MAIN_WIN, CV_WINDOW_AUTOSIZE);

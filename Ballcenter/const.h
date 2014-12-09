@@ -9,6 +9,7 @@
 // Window settings
 #define MAIN_WIN "Ballcenter"
 #define OUT_WIN "Output"
+#define CAL_WIN "Calibrate"
 #define CIRCLE_COLOR 200, 0, 0
 #define OUT_BG 255, 0, 0
 
@@ -18,3 +19,7 @@
 #define MIN_RADIUS 0
 #define MAX_RADIUS 0
 #define MIN_DIST 5
+
+// Calibration settings
+#define SQ_THRESH 100
+#define CAL_ITER 11

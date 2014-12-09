@@ -8,7 +8,6 @@ using namespace cv;
 using namespace std;
 //Mat src_gray;
 
-Mat src;
 Mat out_src;
 
 namespace bc {
