@@ -28,7 +28,7 @@ namespace bc {
 		return circles;
 	}
 	void draw_circles(vector<Vec3f> circles, Mat src){
-		out_src = Mat::zeros(S_HEIGHT, S_WIDTH, CV_8UC3);
+		out_src = Mat::zeros(src.rows, src.cols, CV_8UC3);
 		out_src = Scalar(OUT_BG);
 		for (size_t i = 0; i < circles.size(); i++)
 		{

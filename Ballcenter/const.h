@@ -3,8 +3,6 @@
 #define IN_HEIGHT 480
 #define OUT_WIDTH 640
 #define OUT_HEIGHT 480
-#define S_WIDTH 400
-#define S_HEIGHT 300
 
 // Window settings
 #define MAIN_WIN "Ballcenter"

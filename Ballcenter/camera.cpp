@@ -21,7 +21,6 @@ bool Camera::open(int id){
 void Camera::get_frame(){
 	cam >> src;
 	src = src(aoi);
-	resize(src, src, Size(S_WIDTH, S_HEIGHT));
 }
 void Camera::get_raw_frame(){
 	cam >> src;
