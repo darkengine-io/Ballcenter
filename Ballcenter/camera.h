@@ -8,4 +8,5 @@ public:
 	void get_raw_frame();
 	cv::Rect aoi;
 	cv::Mat src;
+	float x_scale, y_scale;
 };

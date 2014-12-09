@@ -29,7 +29,7 @@ int main(int argc, char** argv)
 		fps_start("loop");
 		cam.get_frame();
 		
-		bc::draw_circles(bc::find_circles(cam.src), cam.src);
+		bc::draw_circles(bc::find_circles(cam.src), cam.src, cam.x_scale, cam.y_scale);
 		/// Draw the circles detected
 
 		//imshow(MAIN_WIN, src);

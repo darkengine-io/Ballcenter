@@ -52,6 +52,8 @@ namespace cal{
 		wait_for_key();
 		
 		cam.aoi = boundingRect(Mat(smallest_square));
+		cam.y_scale = (float)OUT_HEIGHT / cam.aoi.height;
+		cam.x_scale = (float)OUT_WIDTH / cam.aoi.width;
 		destroyWindow(CAL_WIN);
 	}
 

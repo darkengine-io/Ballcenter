@@ -27,8 +27,9 @@ namespace bc {
 		te("circle");
 		return circles;
 	}
-	void draw_circles(vector<Vec3f> circles, Mat src){
-		out_src = Mat::zeros(src.rows, src.cols, CV_8UC3);
+	void draw_circles(vector<Vec3f> circles, Mat src, float x_scale, float y_scale){
+		out_src = Mat::zeros(OUT_HEIGHT, OUT_WIDTH, CV_8UC3);
+
 		out_src = Scalar(OUT_BG);
 		for (size_t i = 0; i < circles.size(); i++)
 		{
@@ -39,13 +40,9 @@ namespace bc {
 			// circle outline
 			circle(src, center, radius, Scalar(0, 0, 255), 3, 8, 0);
 
-			circle(out_src, center, radius, Scalar(CIRCLE_COLOR), 3, 8, 0);
+			Point scaled_center = Point((float)center.x * x_scale, (float)center.y * y_scale);
+			circle(out_src, scaled_center, radius * x_scale, Scalar(CIRCLE_COLOR), 3, 8, 0);
 		}
-#if S_HEIGHT !=  OUT_HEIGHT || S_WIDTH != OUT_WIDTH
-		ts("resize");
-		resize(out_src, out_src, Size(OUT_WIDTH, OUT_HEIGHT));
-		te("resize");
-#endif
 		frun(text_ovl(src, std::to_string((int)fps_end("loop")) + " fps", Point(0,15), Scalar(255, 0, 100)));
 		imshow(MAIN_WIN, src);
 		imshow(OUT_WIN, out_src);
