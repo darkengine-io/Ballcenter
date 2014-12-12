@@ -7,6 +7,7 @@
 #include "circles.h"
 #include "camera.h"
 #include "calibrate.h"
+#include "data.h"
 
 using namespace cv;
 
