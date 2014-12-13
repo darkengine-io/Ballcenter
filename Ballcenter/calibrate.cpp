@@ -36,8 +36,7 @@ namespace cal{
 		imshow(CAL_WIN, out);
 		wait_for_key();
 
-		//rectangle(out, Rect(0, 0, 100, 100), Scalar(255, 255, 255), -1);
-		out = Scalar(255, 255, 255);
+		out = Scalar(CAL_COLOR);
 		imshow(CAL_WIN, out);
 		wait_for_key();
 
