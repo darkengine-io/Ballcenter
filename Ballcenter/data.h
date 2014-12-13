@@ -1,8 +1,7 @@
 #pragma once
 
 struct ball {
-	cv::Point position;
-	float velocity;
+	float x, y, velocity;
 };
 
 namespace data {

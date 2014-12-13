@@ -69,6 +69,7 @@
     <ClCompile Include="calibrate.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="circles.cpp" />
+    <ClCompile Include="data.cpp" />
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
