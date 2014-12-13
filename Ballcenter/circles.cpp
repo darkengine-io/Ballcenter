@@ -11,7 +11,7 @@ using namespace std;
 Mat out_src;
 
 namespace bc {
-	void find_circles(Mat& src){
+	cv::vector<cv::Vec<float, 3>>* find_circles(Mat& src){
 		Mat input_gray;
 		/// Convert it to gray
 		cvtColor(src, input_gray, CV_BGR2GRAY);
@@ -20,6 +20,7 @@ namespace bc {
 		ts("circle");
 		HoughCircles(input_gray, circles, CV_HOUGH_GRADIENT, 1, MIN_DIST, UPPER_EDGE, CENTER_THRESH, MIN_RADIUS, MAX_RADIUS);
 		te("circle");
+		return &circles;
 	}
 	void draw_circles(Mat& src, float x_scale, float y_scale){
 		out_src = Mat::zeros(OUT_HEIGHT, OUT_WIDTH, CV_8UC3);
