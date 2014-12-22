@@ -12,13 +12,13 @@
 #define OUT_BG 255, 0, 0
 
 // Hough constants
-#define UPPER_EDGE 60
+#define UPPER_EDGE 120
 #define CENTER_THRESH 30
 #define MIN_RADIUS 0
 #define MAX_RADIUS 0
 #define MIN_DIST 15
 
 // Calibration settings
-#define SQ_THRESH 250
-#define CAL_ITER 11
+#define SQ_THRESH 800
+#define CAL_ITER 4
 #define CAL_COLOR 0, 0, 255
