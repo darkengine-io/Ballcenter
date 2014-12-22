@@ -16,9 +16,9 @@
 #define CENTER_THRESH 30
 #define MIN_RADIUS 0
 #define MAX_RADIUS 0
-#define MIN_DIST 5
+#define MIN_DIST 15
 
 // Calibration settings
-#define SQ_THRESH 200
+#define SQ_THRESH 250
 #define CAL_ITER 11
 #define CAL_COLOR 0, 0, 255
