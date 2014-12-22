@@ -19,6 +19,6 @@
 #define MIN_DIST 5
 
 // Calibration settings
-#define SQ_THRESH 100
+#define SQ_THRESH 200
 #define CAL_ITER 11
 #define CAL_COLOR 0, 0, 255
