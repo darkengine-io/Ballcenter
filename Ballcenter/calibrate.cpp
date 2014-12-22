@@ -5,6 +5,7 @@
 #include "const.h"
 #include "camera.h"
 #include "calibrate.h"
+#include <float.h>
 
 using namespace cv;
 
@@ -62,7 +63,7 @@ namespace cal{
 	{
 		vector<Point> biggest_square;
 
-		int min_area = 65535;
+		float min_area = FLT_MAX;
 		int max_square_idx = 0;
 		const int n_points = 4;
 
@@ -76,7 +77,7 @@ namespace cal{
 			// Store the index position of the biggest square found
 			if (rectangle.area() < min_area)
 			{
-				min_area = rectangle.area();
+				min_area = (float)rectangle.area();
 				max_square_idx = i;
 			}
 		}
