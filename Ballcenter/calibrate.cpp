@@ -33,8 +33,6 @@ namespace cal{
 	void calibrate(Camera& cam){
 		namedWindow(CAL_WIN, CV_WINDOW_AUTOSIZE);
 		out = Mat::zeros(OUT_HEIGHT, OUT_WIDTH, CV_8UC3);
-		imshow(CAL_WIN, out);
-		wait_for_key();
 
 		out = Scalar(CAL_COLOR);
 		imshow(CAL_WIN, out);
