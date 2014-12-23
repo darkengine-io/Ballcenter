@@ -1,8 +1,8 @@
 // Input settings
 #define IN_WIDTH 640
 #define IN_HEIGHT 480
-#define OUT_WIDTH 640
-#define OUT_HEIGHT 480
+#define OUT_WIDTH 800
+#define OUT_HEIGHT 600
 
 // Window settings
 #define MAIN_WIN "Ballcenter"
