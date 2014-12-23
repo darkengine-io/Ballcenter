@@ -32,6 +32,8 @@ namespace cal{
 	}
 
 	void calibrate(Camera& cam){
+		cam.cam.set(CV_CAP_PROP_FRAME_WIDTH, CAL_WIDTH);
+		cam.cam.set(CV_CAP_PROP_FRAME_HEIGHT, CAL_HEIGHT);
 		namedWindow(CAL_WIN, CV_WINDOW_AUTOSIZE);
 		out = Mat::zeros(OUT_HEIGHT, OUT_WIDTH, CV_8UC3);
 
@@ -46,13 +48,16 @@ namespace cal{
 		drawSquares(cam.src, squares, Scalar(0, 255, 0));
 		vector<Point> smallest_square = find_smallest_square(squares);
 		drawSquare(cam.src, smallest_square, Scalar(255, 0, 0));
+		resize(cam.src, cam.src, Size(OUT_WIDTH, OUT_HEIGHT));
 		imshow(CAL_WIN, cam.src);
 		wait_for_key();
 		
-		cam.aoi = boundingRect(Mat(smallest_square));
+		cam.aoi = boundingRect(Mat(smallest_square) * ((float)IN_HEIGHT / (float)CAL_HEIGHT));
 		cam.y_scale = (float)OUT_HEIGHT / cam.aoi.height;
 		cam.x_scale = (float)OUT_WIDTH / cam.aoi.width;
 		destroyWindow(CAL_WIN);
+		cam.cam.set(CV_CAP_PROP_FRAME_WIDTH, IN_WIDTH);
+		cam.cam.set(CV_CAP_PROP_FRAME_HEIGHT, IN_HEIGHT);
 	}
 
 	void wait_for_key(){

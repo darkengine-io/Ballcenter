@@ -22,3 +22,5 @@
 #define SQ_THRESH 800
 #define CAL_ITER 4
 #define CAL_COLOR 0, 0, 255
+#define CAL_WIDTH 1600
+#define CAL_HEIGHT 1200
