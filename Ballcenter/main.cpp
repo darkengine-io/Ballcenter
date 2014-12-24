@@ -11,6 +11,7 @@
 
 using namespace cv;
 
+cv::vector<cv::Vec<float, 3>> circles;
 Camera cam;
 
 int main(int argc, char** argv)
@@ -32,9 +33,9 @@ int main(int argc, char** argv)
 		fps_start("loop");
 		cam.get_frame();
 		
-		bc::circles_p = bc::find_circles(cam.src);
-		bc::draw_circles(cam.src, cam.x_scale, cam.y_scale);
-		data::tick(*bc::circles_p);
+		bc::find_circles(cam.src, circles);
+		bc::draw_circles(cam.src, cam.x_scale, cam.y_scale, circles);
+		data::tick(circles);
 		/// Draw the circles detected
 
 		//imshow(MAIN_WIN, src);

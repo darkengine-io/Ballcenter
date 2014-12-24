@@ -10,7 +10,7 @@ using namespace std;
 
 Mat out_src;
 namespace bc {
-	cv::vector<cv::Vec<float, 3>>* find_circles(Mat& src){
+	void find_circles(Mat& src, cv::vector<cv::Vec<float, 3>>& circles){
 		Mat input_gray(src.rows, src.cols, CV_8UC3);
 		int from_to[] = { 0,0, 1,1, 1,2 };
 		mixChannels(&src, 1, &input_gray, 1, from_to, 3); // drop color channels
@@ -21,9 +21,8 @@ namespace bc {
 		HoughCircles(input_gray, circles, CV_HOUGH_GRADIENT, 1, MIN_DIST, UPPER_EDGE, CENTER_THRESH, MIN_RADIUS, MAX_RADIUS);
 		te("circle");
 		imshow(CAM_WIN, input_gray);
-		return &circles;
 	}
-	void draw_circles(Mat& src, float x_scale, float y_scale){
+	void draw_circles(Mat& src, float x_scale, float y_scale, vector<Vec3f>& circles){
 		out_src = Mat::zeros(OUT_HEIGHT, OUT_WIDTH, CV_8UC3);
 
 		out_src = Scalar(OUT_BG);
