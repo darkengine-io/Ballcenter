@@ -20,6 +20,7 @@ namespace bc {
 		ts("circle");
 		HoughCircles(input_gray, circles, CV_HOUGH_GRADIENT, 1, MIN_DIST, UPPER_EDGE, CENTER_THRESH, MIN_RADIUS, MAX_RADIUS);
 		te("circle");
+		imshow(CAM_WIN, input_gray);
 		return &circles;
 	}
 	void draw_circles(Mat& src, float x_scale, float y_scale){
