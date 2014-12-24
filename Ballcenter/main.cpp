@@ -25,7 +25,8 @@ int main(int argc, char** argv)
 
 	dp("Opening windows");
 	namedWindow(MAIN_WIN, CV_WINDOW_AUTOSIZE);
-	namedWindow(OUT_WIN, CV_WINDOW_AUTOSIZE);
+	namedWindow(OUT_WIN, CV_WINDOW_NORMAL);
+	cvSetWindowProperty(OUT_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
 	while (true){
 		fps_start("loop");
 		cam.get_frame();
