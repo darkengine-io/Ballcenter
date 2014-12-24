@@ -8,8 +8,8 @@
 #define MAIN_WIN "Ballcenter"
 #define OUT_WIN "Output"
 #define CAL_WIN "Calibrate"
-#define CIRCLE_COLOR 200, 0, 0
 #define CAM_WIN "Camera"
+#define CIRCLE_COLOR 0, 0, 255
 #define OUT_BG 255, 0, 0
 
 // Hough constants

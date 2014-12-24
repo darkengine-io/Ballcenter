@@ -9,12 +9,12 @@ using namespace std;
 //Mat src_gray;
 
 Mat out_src;
-
 namespace bc {
 	cv::vector<cv::Vec<float, 3>>* find_circles(Mat& src){
-		Mat input_gray;
-		/// Convert it to gray
-		cvtColor(src, input_gray, CV_BGR2GRAY);
+		Mat input_gray(src.rows, src.cols, CV_8UC3);
+		int from_to[] = { 0,0, 1,1, 1,2 };
+		mixChannels(&src, 1, &input_gray, 1, from_to, 3); // drop color channels
+		cvtColor(input_gray, input_gray, CV_BGR2GRAY);
 
 		/// Apply the Hough Transform to find the circles
 		ts("circle");
