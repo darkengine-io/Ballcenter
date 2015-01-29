@@ -35,7 +35,7 @@ namespace cal{
 		cam.cam.set(CV_CAP_PROP_FRAME_WIDTH, CAL_WIDTH);
 		cam.cam.set(CV_CAP_PROP_FRAME_HEIGHT, CAL_HEIGHT);
 		namedWindow(CAL_WIN, CV_WINDOW_NORMAL);
-		cvSetWindowProperty(CAL_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
+		//cvSetWindowProperty(CAL_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
 		out = Mat::zeros(OUT_HEIGHT, OUT_WIDTH, CV_8UC3);
 
 		out = Scalar(CAL_COLOR);
@@ -54,8 +54,6 @@ namespace cal{
 		wait_for_key();
 		
 		cam.aoi = boundingRect(Mat(smallest_square) * ((float)IN_HEIGHT / (float)CAL_HEIGHT));
-		cam.y_scale = (float)OUT_HEIGHT / cam.aoi.height;
-		cam.x_scale = (float)OUT_WIDTH / cam.aoi.width;
 		destroyWindow(CAL_WIN);
 		cam.cam.set(CV_CAP_PROP_FRAME_WIDTH, IN_WIDTH);
 		cam.cam.set(CV_CAP_PROP_FRAME_HEIGHT, IN_HEIGHT);

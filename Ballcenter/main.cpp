@@ -28,13 +28,15 @@ int main(int argc, char** argv)
 	namedWindow(MAIN_WIN, CV_WINDOW_AUTOSIZE);
 	namedWindow(CAM_WIN, CV_WINDOW_AUTOSIZE);
 	namedWindow(OUT_WIN, CV_WINDOW_NORMAL);
-	cvSetWindowProperty(OUT_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
+	//cvSetWindowProperty(OUT_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
 	while (true){
 		fps_start("loop");
 		cam.get_frame();
 		
 		bc::find_circles(cam.src, circles);
-		bc::draw_circles(cam.src, cam.x_scale, cam.y_scale, circles);
+		bc::draw_circles(cam.src, circles);
+		bc::draw_blobs(cam.src);
+		bc::redraw(cam.src);
 		data::tick(circles);
 		/// Draw the circles detected
 
