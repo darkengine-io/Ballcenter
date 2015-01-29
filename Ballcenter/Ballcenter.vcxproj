@@ -66,7 +66,20 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="calibrate.cpp" />
+    <ClCompile Include="camera.cpp" />
+    <ClCompile Include="circles.cpp" />
+    <ClCompile Include="data.cpp" />
+    <ClCompile Include="debug.cpp" />
     <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="calibrate.h" />
+    <ClInclude Include="camera.h" />
+    <ClInclude Include="circles.h" />
+    <ClInclude Include="const.h" />
+    <ClInclude Include="data.h" />
+    <ClInclude Include="debug.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
