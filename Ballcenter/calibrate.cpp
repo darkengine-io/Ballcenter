@@ -60,7 +60,7 @@ namespace cal{
 	}
 
 	void wait_for_key(){
-		while (waitKey(10) < 0);
+   		while (waitKey(10) < 0);
 	}
 
 	vector<Point> find_smallest_square(const vector<vector<Point> >& squares)

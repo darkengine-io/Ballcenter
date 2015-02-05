@@ -9,8 +9,8 @@
 #define OUT_WIN "Output"
 #define CAL_WIN "Calibrate"
 #define CAM_WIN "Camera"
-#define CIRCLE_COLOR 200, 0, 0
-#define OUT_BG 255, 0, 0
+#define CIRCLE_COLOR 100, 0, 155
+#define OUT_BG 100, 0, 0
 
 // Hough constants
 #define UPPER_EDGE 120
