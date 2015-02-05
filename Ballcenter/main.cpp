@@ -41,7 +41,6 @@ int main(int argc, char** argv)
 		bc::draw_circles(cam.src, circles);
 		bc::draw_blobs(cam.src, blobs, hierarchy);
 		bc::redraw(cam.src);
-		data::tick(circles);
 		/// Draw the circles detected
 
 		//imshow(MAIN_WIN, src);
