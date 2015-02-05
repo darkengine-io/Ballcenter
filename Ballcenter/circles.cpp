@@ -53,10 +53,10 @@ namespace bc {
 		findContours(canny_output, blobs, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
 
 		/// Draw contours
-		//for (int i = 0; i< blobs.size(); i++)
-		//{
-			drawContours(out_src, blobs, -1, Scalar(255,255,255), CV_FILLED, 8, hierarchy, 0, Point());
-		//}
+		for (int i = 0; i< blobs.size(); i++)
+		{
+			drawContours(out_src, blobs, i, Scalar(255,255,255), CV_FILLED, 8, hierarchy, 0, Point());
+		}
 	}
 
 	void redraw(Mat& src){
