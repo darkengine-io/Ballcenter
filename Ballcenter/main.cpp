@@ -12,6 +12,8 @@
 using namespace cv;
 
 cv::vector<cv::Vec<float, 3>> circles;
+vector<vector<Point>> blobs;
+vector<Vec4i> hierarchy;
 Camera cam;
 
 int main(int argc, char** argv)
@@ -34,8 +36,9 @@ int main(int argc, char** argv)
 		cam.get_frame();
 		
 		bc::find_circles(cam.src, circles);
+		bc::find_blobs(cam.src, blobs, hierarchy);
 		bc::draw_circles(cam.src, circles);
-		bc::draw_blobs(cam.src);
+		bc::draw_blobs(cam.src, blobs, hierarchy);
 		bc::redraw(cam.src);
 		data::tick(circles);
 		/// Draw the circles detected

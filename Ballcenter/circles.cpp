@@ -24,7 +24,7 @@ namespace bc {
 		imshow(CAM_WIN, input_gray);
 	}
 	void draw_circles(Mat& src, vector<Vec3f>& circles){
-		out_src = Mat::zeros(OUT_HEIGHT, OUT_WIDTH, CV_8UC3);
+		out_src = Mat::zeros(src.size(), CV_8UC3);
 
 		out_src = Scalar(OUT_BG);
 		for (size_t i = 0; i < circles.size(); i++)
@@ -44,14 +44,13 @@ namespace bc {
 		}
 		frun(text_ovl(src, std::to_string((int)fps_end("loop")) + " fps", Point(0,15), Scalar(255, 0, 100)));
 	}
-	void draw_blobs(Mat& src){
+	void find_blobs(cv::Mat& src, vector<vector<Point>>& blobs, vector<Vec4i>& hierarchy){
 		Mat canny_output;
-		vector<vector<Point>> blobs;
-		vector<Vec4i> hierarchy;
 		Canny(src, canny_output, BLOB_THRESH, BLOB_THRESH * 2, 3);
 		/// Find contours
 		findContours(canny_output, blobs, hierarchy, CV_RETR_TREE, CV_CHAIN_APPROX_SIMPLE, Point(0, 0));
-
+	}
+	void draw_blobs(cv::Mat& src, vector<vector<Point>>& blobs, vector<Vec4i>& hierarchy){
 		/// Draw contours
 		for (int i = 0; i< blobs.size(); i++)
 		{
@@ -60,7 +59,7 @@ namespace bc {
 	}
 
 	void redraw(Mat& src){
-		resize(out_src, out_src, Size(OUT_WIDTH, OUT_HEIGHT));
+		resize(out_src, out_src, Size(OUT_WIDTH, OUT_HEIGHT), INTER_LINEAR);
 		imshow(MAIN_WIN, src);
 		imshow(OUT_WIN, out_src);
 	}
