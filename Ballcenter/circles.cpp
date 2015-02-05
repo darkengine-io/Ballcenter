@@ -3,6 +3,7 @@
 #include "circles.h"
 #include "debug.h"
 #include "const.h"
+#include <iostream>
 
 using namespace cv;
 using namespace std;
@@ -29,6 +30,9 @@ namespace bc {
 		for (size_t i = 0; i < circles.size(); i++)
 		{
 			Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
+			if (center.x < 50 && center.y < 50){
+				cout << "Hot corner" << endl;
+			}
 			int radius = cvRound(circles[i][2]);
 			// circle center
 			circle(src, center, 3, Scalar(0, 255, 0), -1, 8, 0);

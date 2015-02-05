@@ -1,15 +1,15 @@
 // Input settings
 #define IN_WIDTH 640
 #define IN_HEIGHT 480
-#define OUT_WIDTH 800
-#define OUT_HEIGHT 600
+#define OUT_WIDTH 640
+#define OUT_HEIGHT 480
 
 // Window settings
 #define MAIN_WIN "Ballcenter"
 #define OUT_WIN "Output"
 #define CAL_WIN "Calibrate"
 #define CAM_WIN "Camera"
-#define CIRCLE_COLOR 0, 0, 255
+#define CIRCLE_COLOR 200, 0, 0
 #define OUT_BG 255, 0, 0
 
 // Hough constants
@@ -23,8 +23,8 @@
 #define BLOB_THRESH 250
 
 // Calibration settings
-#define SQ_THRESH 800
-#define CAL_ITER 4
+#define SQ_THRESH 1600
+#define CAL_ITER 2
 #define CAL_COLOR 0, 0, 255
 #define CAL_WIDTH 1600
 #define CAL_HEIGHT 1200
