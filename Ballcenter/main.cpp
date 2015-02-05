@@ -37,6 +37,7 @@ int main(int argc, char** argv)
 		
 		bc::find_circles(cam.src, circles);
 		bc::find_blobs(cam.src, blobs, hierarchy);
+		bc::out_create(cam.src);
 		bc::draw_circles(cam.src, circles);
 		bc::draw_blobs(cam.src, blobs, hierarchy);
 		bc::redraw(cam.src);

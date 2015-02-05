@@ -23,10 +23,11 @@ namespace bc {
 		te("circle");
 		imshow(CAM_WIN, input_gray);
 	}
-	void draw_circles(Mat& src, vector<Vec3f>& circles){
+	void out_create(Mat& src){
 		out_src = Mat::zeros(src.size(), CV_8UC3);
-
 		out_src = Scalar(OUT_BG);
+	}
+	void draw_circles(Mat& src, vector<Vec3f>& circles){
 		for (size_t i = 0; i < circles.size(); i++)
 		{
 			Point center(cvRound(circles[i][0]), cvRound(circles[i][1]));
