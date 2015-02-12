@@ -55,7 +55,7 @@ namespace bc {
 		/// Draw contours
 		for (int i = 0; i< blobs.size(); i++)
 		{
-			drawContours(out_src, blobs, i, Scalar(255,255,255), CV_FILLED, 8, hierarchy, 0, Point());
+			drawContours(out_src, blobs, i, Scalar(BLOB_COLOR), CV_FILLED, 8, hierarchy, 0, Point());
 		}
 	}
 
