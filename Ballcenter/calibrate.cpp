@@ -44,6 +44,8 @@ namespace cal{
 
 		cam.get_raw_frame();
 		cam.get_raw_frame();
+		int from_to[] = { 0,0, 0,1, 0,2};
+		mixChannels(&cam.src, 1, &cam.src, 1, from_to,3); // drop color channels
 		vector<vector<Point>> squares;
 		findSquares(cam.src, squares);
 		drawSquares(cam.src, squares, Scalar(0, 255, 0));

@@ -26,6 +26,6 @@
 // Calibration settings
 #define SQ_THRESH 1600
 #define CAL_ITER 2
-#define CAL_COLOR 0, 0, 255
+#define CAL_COLOR 255, 0, 0
 #define CAL_WIDTH 1600
 #define CAL_HEIGHT 1200
