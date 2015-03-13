@@ -7,6 +7,7 @@
 #include "circles.h"
 #include "camera.h"
 #include "calibrate.h"
+#include "legos.h"
 #include "data.h"
 
 using namespace cv;
@@ -26,6 +27,9 @@ int main(int argc, char** argv)
 	dp("Calibrating");
 	cal::calibrate(cam);
 
+	dp("Legos");
+	legos::legos(cam);
+
 	dp("Opening windows");
 	namedWindow(MAIN_WIN, CV_WINDOW_AUTOSIZE);
 	namedWindow(CAM_WIN, CV_WINDOW_AUTOSIZE);
@@ -35,11 +39,7 @@ int main(int argc, char** argv)
 		fps_start("loop");
 		cam.get_frame();
 		
-		bc::find_circles(cam.src, circles);
-		bc::find_blobs(cam.src, blobs, hierarchy);
 		bc::out_create(cam.src);
-		bc::draw_circles(cam.src, circles);
-		bc::draw_blobs(cam.src, blobs, hierarchy);
 		bc::redraw(cam.src);
 		/// Draw the circles detected
 

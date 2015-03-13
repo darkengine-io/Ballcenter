@@ -4,12 +4,12 @@
 #include "debug.h"
 #include "const.h"
 #include "camera.h"
-#include "calibrate.h"
+#include "legos.h"
 #include <float.h>
 
 using namespace cv;
 
-namespace cal{
+namespace legos{
 	void wait_for_key();
 	vector<Point> find_smallest_square(const vector<vector<Point> >& squares);
 	void findSquares(const Mat& image, vector<vector<Point> >& squares);
@@ -20,7 +20,7 @@ namespace cal{
 		const Point* p = &square[0];
 		int n = (int)square.size();
 		polylines(image, &p, &n, 1, true, color, 3);
-	}
+	} 
 
 	// the function draws all the squares in the image
 	void drawSquares(Mat& image, const vector<vector<Point> >& squares, Scalar color)
@@ -31,34 +31,28 @@ namespace cal{
 		}
 	}
 
-	void calibrate(Camera& cam){
-		cam.cam.set(CV_CAP_PROP_FRAME_WIDTH, CAL_WIDTH);
-		cam.cam.set(CV_CAP_PROP_FRAME_HEIGHT, CAL_HEIGHT);
-		namedWindow(CAL_WIN, CV_WINDOW_NORMAL);
-		cvSetWindowProperty(CAL_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
-		out = Mat::zeros(OUT_HEIGHT, OUT_WIDTH, CV_8UC3);
+	void legos(Camera& cam){
+		namedWindow(LEGO_WIN, CV_WINDOW_NORMAL);
+		cvSetWindowProperty(LEGO_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
+		while (true){
+			out = Mat::zeros(OUT_HEIGHT, OUT_WIDTH, CV_8UC3);
 
-		out = Scalar(CAL_COLOR);
-		imshow(CAL_WIN, out);
-		wait_for_key();
+			out = Scalar(LEGO_COLOR);
+			imshow(LEGO_WIN, out);
+			wait_for_key();
 
-		cam.get_raw_frame();
-		cam.get_raw_frame();
-		int from_to[] = { 0,0, 0,1, 0,2};
-		mixChannels(&cam.src, 1, &cam.src, 1, from_to,3); // drop color channels
-		vector<vector<Point>> squares;
-		findSquares(cam.src, squares);
-		drawSquares(cam.src, squares, Scalar(0, 255, 0));
-		vector<Point> smallest_square = find_smallest_square(squares);
-		drawSquare(cam.src, smallest_square, Scalar(255, 0, 0));
-		resize(cam.src, cam.src, Size(OUT_WIDTH, OUT_HEIGHT));
-		imshow(CAL_WIN, cam.src);
-		wait_for_key();
-		
-		cam.aoi = boundingRect(Mat(smallest_square) * ((float)IN_HEIGHT / (float)CAL_HEIGHT));
-		destroyWindow(CAL_WIN);
-		cam.cam.set(CV_CAP_PROP_FRAME_WIDTH, IN_WIDTH);
-		cam.cam.set(CV_CAP_PROP_FRAME_HEIGHT, IN_HEIGHT);
+			cam.get_frame();
+			cam.get_frame();
+			vector<vector<Point>> squares;
+			findSquares(cam.src, squares);
+			drawSquares(cam.src, squares, Scalar(0, 255, 0));
+			resize(cam.src, cam.src, Size(OUT_WIDTH, OUT_HEIGHT));
+			imshow(LEGO_WIN, cam.src);
+			wait_for_key();
+		}
+
+		// TODO set up towers 
+		destroyWindow(LEGO_WIN);
 	}
 
 	void wait_for_key(){
@@ -124,7 +118,7 @@ namespace cal{
 			mixChannels(&timg, 1, &gray0, 1, ch, 1);
 
 			// try several threshold levels
-			for (int l = 0; l < CAL_ITER; l++)
+			for (int l = 0; l < LEGO_ITER; l++)
 			{
 				// hack: use Canny instead of zero threshold level.
 				// Canny helps to catch squares with gradient shading
@@ -132,7 +126,7 @@ namespace cal{
 				{
 					// apply Canny. Take the upper threshold from slider
 					// and set the lower to 0 (which forces edges merging)
-					Canny(gray0, gray, 0, CAL_SQ_THRESH, 5);
+					Canny(gray0, gray, 0, LEGO_SQ_THRESH, 5);
 					// dilate canny output to remove potential
 					// holes between edge segments
 					dilate(gray, gray, Mat(), Point(-1, -1));
@@ -141,7 +135,7 @@ namespace cal{
 				{
 					// apply threshold if l!=0:
 					//     tgray(x,y) = gray(x,y) < (l+1)*255/N ? 255 : 0
-					gray = gray0 >= (l + 1) * 255 / CAL_ITER;
+					gray = gray0 >= (l + 1) * 255 / LEGO_ITER;
 				}
 
 				// find contours and store them all as a list

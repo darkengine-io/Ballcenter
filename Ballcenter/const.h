@@ -1,13 +1,14 @@
 // Input settings
-#define IN_WIDTH 640
-#define IN_HEIGHT 480
-#define OUT_WIDTH 640
-#define OUT_HEIGHT 480
+#define IN_WIDTH 1280
+#define IN_HEIGHT 960
+#define OUT_WIDTH 1280
+#define OUT_HEIGHT 960
 
 // Window settings
 #define MAIN_WIN "Ballcenter"
 #define OUT_WIN "Output"
 #define CAL_WIN "Calibrate"
+#define LEGO_WIN "Calibrate"
 #define CAM_WIN "Camera"
 #define CIRCLE_COLOR 100, 0, 155
 #define BLOB_COLOR 100, 0, 155
@@ -24,8 +25,13 @@
 #define BLOB_THRESH 250
 
 // Calibration settings
-#define SQ_THRESH 1600
+#define CAL_SQ_THRESH 1600
 #define CAL_ITER 2
 #define CAL_COLOR 255, 0, 0
 #define CAL_WIDTH 1600
 #define CAL_HEIGHT 1200
+
+// Calibration settings
+#define LEGO_SQ_THRESH 700		//  400 init
+#define LEGO_ITER 50			// itterations 10 init
+#define LEGO_COLOR 255,255,255
