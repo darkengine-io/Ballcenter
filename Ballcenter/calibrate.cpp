@@ -10,7 +10,7 @@
 using namespace cv;
 
 namespace cal{
-	void wait_for_key();
+	int wait_for_key();
 	vector<Point> find_smallest_square(const vector<vector<Point> >& squares);
 	void findSquares(const Mat& image, vector<vector<Point> >& squares);
 
@@ -36,24 +36,30 @@ namespace cal{
 		cam.cam.set(CV_CAP_PROP_FRAME_HEIGHT, CAL_HEIGHT);
 		namedWindow(CAL_WIN, CV_WINDOW_NORMAL);
 		cvSetWindowProperty(CAL_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
-		out = Mat::zeros(OUT_HEIGHT, OUT_WIDTH, CV_8UC3);
+		vector<Point> smallest_square;
+		while (true){
+			out = Mat::zeros(OUT_HEIGHT, OUT_WIDTH, CV_8UC3);
 
-		out = Scalar(CAL_COLOR);
-		imshow(CAL_WIN, out);
-		wait_for_key();
+			out = Scalar(CAL_COLOR);
+			imshow(CAL_WIN, out);
+			wait_for_key();
 
-		cam.get_raw_frame();
-		cam.get_raw_frame();
-		int from_to[] = { 0,0, 0,1, 0,2};
-		mixChannels(&cam.src, 1, &cam.src, 1, from_to,3); // drop color channels
-		vector<vector<Point>> squares;
-		findSquares(cam.src, squares);
-		drawSquares(cam.src, squares, Scalar(0, 255, 0));
-		vector<Point> smallest_square = find_smallest_square(squares);
-		drawSquare(cam.src, smallest_square, Scalar(255, 0, 0));
-		resize(cam.src, cam.src, Size(OUT_WIDTH, OUT_HEIGHT));
-		imshow(CAL_WIN, cam.src);
-		wait_for_key();
+			cam.get_raw_frame();
+			cam.get_raw_frame();
+			int from_to[] = { 0, 0, 0, 1, 0, 2 };
+			mixChannels(&cam.src, 1, &cam.src, 1, from_to, 3); // drop color channels
+			vector<vector<Point>> squares;
+			findSquares(cam.src, squares);
+			drawSquares(cam.src, squares, Scalar(0, 255, 0));
+			smallest_square = find_smallest_square(squares);
+			drawSquare(cam.src, smallest_square, Scalar(255, 0, 0));
+			resize(cam.src, cam.src, Size(OUT_WIDTH, OUT_HEIGHT));
+			imshow(CAL_WIN, cam.src);
+			if (wait_for_key() == 106)
+				continue;
+			else
+				break;
+		}
 		
 		cam.aoi = boundingRect(Mat(smallest_square) * ((float)IN_HEIGHT / (float)CAL_HEIGHT));
 		destroyWindow(CAL_WIN);
@@ -61,8 +67,14 @@ namespace cal{
 		cam.cam.set(CV_CAP_PROP_FRAME_HEIGHT, IN_HEIGHT);
 	}
 
-	void wait_for_key(){
-		while (waitKey(10) < 0);
+	int wait_for_key(){
+		int key;
+		while (true){
+			key = waitKey(10);
+			if (key > 0)
+				break;
+		}
+		return key;
 	}
 
 	vector<Point> find_smallest_square(const vector<vector<Point> >& squares)
