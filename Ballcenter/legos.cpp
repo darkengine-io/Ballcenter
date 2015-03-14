@@ -24,7 +24,7 @@ namespace legos{
 	} 
 
 	// the function draws all the squares in the image
-	void drawSquares(Mat& image, const vector<vector<Point> >& squares)
+	void drawSquares(Mat& image, Mat& out, const vector<vector<Point> >& squares)
 	{
 		for (size_t i = 0; i < squares.size(); i++)
 		{
@@ -32,7 +32,7 @@ namespace legos{
 			Point sum = std::accumulate(squares[i].begin(), squares[i].end(), zero);
 			Point mean_point(sum.x / squares[i].size(), sum.y / squares[i].size());
 			Vec3b color = image.at<Vec3b>(mean_point);
-			drawSquare(image, squares[i], Scalar(color));
+			drawSquare(out, squares[i], Scalar(color));
 		}
 	}
 
@@ -40,7 +40,7 @@ namespace legos{
 		namedWindow(LEGO_WIN, CV_WINDOW_NORMAL);
 		cvSetWindowProperty(LEGO_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
 		while (true){
-			out = Mat::zeros(OUT_HEIGHT, OUT_WIDTH, CV_8UC3);
+			out = Mat::zeros(cam.aoi.height, cam.aoi.width, CV_8UC3);
 
 			out = Scalar(LEGO_COLOR);
 			imshow(LEGO_WIN, out);
@@ -50,9 +50,9 @@ namespace legos{
 			cam.get_frame();
 			vector<vector<Point>> squares;
 			findSquares(cam.src, squares);
-			drawSquares(cam.src, squares);
-			resize(cam.src, cam.src, Size(OUT_WIDTH, OUT_HEIGHT));
-			imshow(LEGO_WIN, cam.src);
+			drawSquares(cam.src, out, squares);
+			resize(out, out, Size(OUT_WIDTH, OUT_HEIGHT));
+			imshow(LEGO_WIN, out);
 			wait_for_key();
 		}
 
