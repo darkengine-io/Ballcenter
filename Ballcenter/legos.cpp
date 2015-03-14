@@ -6,6 +6,7 @@
 #include "camera.h"
 #include "legos.h"
 #include <float.h>
+#include <numeric>
 
 using namespace cv;
 
@@ -23,11 +24,15 @@ namespace legos{
 	} 
 
 	// the function draws all the squares in the image
-	void drawSquares(Mat& image, const vector<vector<Point> >& squares, Scalar color)
+	void drawSquares(Mat& image, const vector<vector<Point> >& squares)
 	{
 		for (size_t i = 0; i < squares.size(); i++)
 		{
-			drawSquare(image, squares[i], color);
+			Point zero(0.0f, 0.0f);
+			Point sum = std::accumulate(squares[i].begin(), squares[i].end(), zero);
+			Point mean_point(sum.x / squares[i].size(), sum.y / squares[i].size());
+			Vec3b color = image.at<Vec3b>(mean_point);
+			drawSquare(image, squares[i], Scalar(color));
 		}
 	}
 
@@ -45,7 +50,7 @@ namespace legos{
 			cam.get_frame();
 			vector<vector<Point>> squares;
 			findSquares(cam.src, squares);
-			drawSquares(cam.src, squares, Scalar(0, 255, 0));
+			drawSquares(cam.src, squares);
 			resize(cam.src, cam.src, Size(OUT_WIDTH, OUT_HEIGHT));
 			imshow(LEGO_WIN, cam.src);
 			wait_for_key();
