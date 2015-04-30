@@ -23,6 +23,15 @@ namespace legos{
 		int n = (int)square.size();
 		polylines(image, &p, &n, 1, true, color, 3);
 	} 
+	// 0 is blue, 1 is green, 2 is red
+	int pick_dominant_color(Vec3b color){
+		if (color[0] > color[1] && color[0] > color[2])
+			return 0; // blue
+		else if (color[1] > color[0] && color[1] > color[2])
+			return 1; // green
+		else if (color[2] > color[0] && color[2] > color[1])
+			return 2; // red
+	}
 
 	// the function draws all the squares in the image
 	void drawSquares(Mat& image, Mat& out, const vector<vector<Point> >& squares)
@@ -34,6 +43,7 @@ namespace legos{
 			Point mean_point(sum.x / squares[i].size(), sum.y / squares[i].size());
 			Vec3b color = image.at<Vec3b>(mean_point);
 			drawSquare(out, squares[i], Scalar(color));
+			text_ovl(out, std::to_string(pick_dominant_color(color)), mean_point, Scalar(color));
 		}
 	}
 
