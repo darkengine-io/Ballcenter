@@ -7,11 +7,12 @@
 #include "legos.h"
 #include <float.h>
 #include <numeric>
+#include <string>
 
 using namespace cv;
 
 namespace legos{
-	void wait_for_key();
+	int wait_for_key();
 	vector<Point> find_smallest_square(const vector<vector<Point> >& squares);
 	void findSquares(const Mat& image, vector<vector<Point> >& squares);
 
@@ -53,15 +54,26 @@ namespace legos{
 			drawSquares(cam.src, out, squares);
 			resize(out, out, Size(OUT_WIDTH, OUT_HEIGHT));
 			imshow(LEGO_WIN, out);
-			wait_for_key();
+			if (wait_for_key() == 106){
+				continue;
+			}
+			else {
+				break;
+			}
 		}
 
 		// TODO set up towers 
 		destroyWindow(LEGO_WIN);
 	}
 
-	void wait_for_key(){
-		while (waitKey(10) < 0);
+	int wait_for_key(){
+		int key;
+		while (true){
+			key = waitKey(10);
+			if (key > 0)
+				break;
+		}
+		return key;
 	}
 
 	vector<Point> find_smallest_square(const vector<vector<Point> >& squares)
