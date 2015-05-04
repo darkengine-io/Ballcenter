@@ -15,6 +15,7 @@ namespace legos{
 	int wait_for_key();
 	vector<Point> find_smallest_square(const vector<vector<Point> >& squares);
 	void findSquares(const Mat& image, vector<vector<Point> >& squares);
+	void filter_squares(vector<vector<Point> >& squares);
 
 	Mat src, out;
 
@@ -61,6 +62,7 @@ namespace legos{
 			cam.get_frame();
 			vector<vector<Point>> squares;
 			findSquares(cam.src, squares);
+			filter_squares(squares);
 			drawSquares(cam.src, out, squares);
 			resize(out, out, Size(OUT_WIDTH, OUT_HEIGHT));
 			imshow(LEGO_WIN, out);
@@ -74,6 +76,47 @@ namespace legos{
 
 		// TODO set up towers 
 		destroyWindow(LEGO_WIN);
+	}
+
+	void filter_squares(vector<vector<Point> >& squares){
+		bool finished;
+		while (true){
+			finished = true;
+			for (size_t i = 0; i < squares.size(); i++){
+				bool stop = false;
+				for (size_t j = 0; j < squares.size(); j++){
+					if (i >= squares.size() || j >= squares.size()){
+						stop = true;
+						break;
+					}
+					if (i != j && ((abs(squares[i][0].x - squares[j][0].x) < 10 && abs(squares[i][0].y - squares[j][0].y) < 10) ||
+						(abs(squares[i][2].x - squares[j][2].x) < 10 && abs(squares[i][2].y - squares[j][2].y) < 10))){
+						squares.erase(squares.begin() + j);
+						finished = false;
+					}
+				}
+				if (stop){
+					finished = false;
+					break;
+				}
+			}
+			if(finished)
+				break;
+		}
+		while (true){
+			finished = true;
+			for (size_t i = 0; i < squares.size(); i++){
+				for (int j = 0; j < squares[i].size(); j++){
+					if (squares[i][j].x < 20 && squares[i][j].y < 20){
+						squares.erase(squares.begin() + i);
+						finished = false;
+						break;
+					}
+				}
+			}
+			if (finished)
+				break;
+		}
 	}
 
 	int wait_for_key(){
