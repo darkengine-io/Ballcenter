@@ -32,6 +32,6 @@
 #define CAL_HEIGHT 1200
 
 // Calibration settings
-#define LEGO_SQ_THRESH 1600
-#define LEGO_ITER 2
+#define LEGO_SQ_THRESH 200
+#define LEGO_ITER 30
 #define LEGO_COLOR 255,255,255
