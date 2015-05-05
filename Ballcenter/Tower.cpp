@@ -42,23 +42,27 @@ int getLego::get(int color, int number, int axis)
 }
 void getLego::set(Tower_C * TowerC ,Tower_T * TowerT ,Tower_S * TowerS)
 {
-	
-	for(int i = 0; i < Red; i++)
-	{
-		TowerC[i].Location[0] = legos::pass(2, i).x;
-		TowerC[i].Location[1] = legos::pass(2, i).y;
+	int bc = 0, gc = 0, rc = 0;
+	for (int i = 0; i < (Red + Green + Blue);i++){
+		square s = legos::pass(cam.src, i);
+		switch (s.color){
+		case 0:
+			TowerS[bc].Location[0] = s.center.x;
+			TowerS[bc].Location[1] = s.center.y;
+			bc++;
+			break;
+		case 1:
+			TowerT[gc].Location[0] = s.center.x;
+			TowerT[gc].Location[1] = s.center.y;
+			gc++;
+			break;
+		case 2:
+			TowerC[rc].Location[0] = s.center.x;
+			TowerC[rc].Location[1] = s.center.y;
+			rc++;
+			break;
+		}
 	}
-	for(int i = 0; i < Green; i++)
-	{
-		TowerT[i].Location[0] = legos::pass(2, i).x;
-		TowerT[i].Location[1] = legos::pass(2, i).y;
-	}
-	for (int i = 0; i < Blue; i++)
-	{
-		TowerS[i].Location[0] = legos::pass(2, i).x;
-		TowerS[i].Location[1] = legos::pass(2, i).y;
-	}
-
 }
 
 

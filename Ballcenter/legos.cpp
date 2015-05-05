@@ -76,13 +76,18 @@ namespace legos{
 			}
 		}
 	}
-	vector<vector<Point>> squares;
+	//vector<vector<Point>> squares;
 
-	Point pass(int Color, int Count)
+	square pass(Mat& image, int Count)
 	{
-		Point temp = squares[Count][Color];
-		//squares[Count][Color].
-		return temp;
+		Point zero(0.0f, 0.0f);
+		Point sum = std::accumulate(squares_g[Count].begin(), squares_g[Count].end(), zero);
+		Point mean_point(sum.x / squares_g[Count].size(), sum.y / squares_g[Count].size());
+		Vec3b color = image.at<Vec3b>(mean_point);
+		square s;
+		s.center = mean_point;
+		s.color = pick_dominant_color(color);
+		return s;
 	}
 	void legos(Camera& cam, int * red, int * green, int * blue){
 		Red = red;
@@ -111,6 +116,7 @@ namespace legos{
 				continue;
 			}
 			else {
+				squares_g = squares;
 				break;
 			}
 		}
