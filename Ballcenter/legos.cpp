@@ -63,6 +63,7 @@ namespace legos{
 			vector<vector<Point>> squares;
 			findSquares(cam.src, squares);
 			filter_squares(squares);
+			cam.src.copyTo(out);
 			drawSquares(cam.src, out, squares);
 			resize(out, out, Size(OUT_WIDTH, OUT_HEIGHT));
 			imshow(LEGO_WIN, out);
