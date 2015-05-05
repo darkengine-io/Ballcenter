@@ -15,13 +15,146 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\Map.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\s-e.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FD-0.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FD-1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FD-2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FD-3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FD-4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FD-5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FL-0.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FL-1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FL-2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FL-3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FL-4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FL-5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FR-0.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FR-1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FR-2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FR-3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FR-4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FR-5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FU-0.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FU-1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FU-2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FU-3.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FU-4.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FU-5.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TD-1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TD-2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TL-1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TL-2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TR-1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TR-2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TU-1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TU-2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Target.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Tower.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="const.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="legos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="circles.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="camera.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="data.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="debug.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="calibrate.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="debug.cpp">
+    <ClCompile Include="Target.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="circles.cpp">
+    <ClCompile Include="Tower.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="calibrate.cpp">
@@ -33,31 +166,14 @@
     <ClCompile Include="data.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="legos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="const.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="debug.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="circles.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="calibrate.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="camera.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="data.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="legos.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ClCompile Include="circles.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

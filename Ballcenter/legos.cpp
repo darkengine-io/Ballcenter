@@ -1,5 +1,6 @@
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2/imgproc/imgproc.hpp"
+#include <iostream>
 #include "circles.h"
 #include "debug.h"
 #include "const.h"
@@ -12,6 +13,10 @@
 using namespace cv;
 
 namespace legos{
+	int * Red;
+	int * Green;
+	int * Blue;
+	int Position[3][10][2];
 	int wait_for_key();
 	vector<Point> find_smallest_square(const vector<vector<Point> >& squares);
 	void findSquares(const Mat& image, vector<vector<Point> >& squares);
@@ -27,13 +32,19 @@ namespace legos{
 	// 0 is blue, 1 is green, 2 is red
 	int pick_dominant_color(Vec3b color){
 		if (color[0] > color[1] && color[0] > color[2])
+		{
 			return 0; // blue
+		}
 		else if (color[1] > color[0] && color[1] > color[2])
+		{
 			return 1; // green
+		}
 		else if (color[2] > color[0] && color[2] > color[1])
+		{
 			return 2; // red
+		}
 	}
-
+			
 	// the function draws all the squares in the image
 	void drawSquares(Mat& image, Mat& out, const vector<vector<Point> >& squares)
 	{
@@ -45,10 +56,39 @@ namespace legos{
 			Vec3b color = image.at<Vec3b>(mean_point);
 			drawSquare(out, squares[i], Scalar(color));
 			text_ovl(out, std::to_string(pick_dominant_color(color)), mean_point, Scalar(color));
+			switch (pick_dominant_color(color))
+			{
+			case(0) :
+				*Blue = *Blue + 1;
+				Position[3][(*Blue) - 1][0] = mean_point.x;
+				Position[3][(*Blue) - 1][1] = mean_point.y;
+				break;
+			case(1) :
+				*Green = *Green + 1;
+				Position[3][(*Green) - 1][0] = mean_point.x;
+				Position[3][(*Green) - 1][1] = mean_point.y;
+				break;
+			case(2) :
+				*Red = *Red + 1;
+				Position[3][(*Red) - 1][0] = mean_point.x;
+				Position[3][(*Red) - 1][1] = mean_point.y;
+				break;
+			}
 		}
 	}
+	vector<vector<Point>> squares;
 
-	void legos(Camera& cam){
+	Point pass(int Color, int Count)
+	{
+		Point temp = squares[Count][Color];
+		//squares[Count][Color].
+		return temp;
+	}
+	void legos(Camera& cam, int * red, int * green, int * blue){
+		Red = red;
+		Green = green;
+		//vector<vector<Point>> squares;
+		Blue = blue;
 		namedWindow(LEGO_WIN, CV_WINDOW_NORMAL);
 		cvSetWindowProperty(LEGO_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
 		while (true){

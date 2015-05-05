@@ -66,13 +66,40 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="calibrate.cpp" />
-    <ClCompile Include="camera.cpp" />
-    <ClCompile Include="circles.cpp" />
-    <ClCompile Include="data.cpp" />
-    <ClCompile Include="debug.cpp" />
-    <ClCompile Include="legos.cpp" />
-    <ClCompile Include="main.cpp" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FD-0.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FD-1.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FD-2.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FD-3.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FD-4.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FD-5.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FL-0.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FL-1.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FL-2.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FL-3.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FL-4.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FL-5.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FR-0.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FR-1.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FR-2.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FR-3.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FR-4.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FR-5.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FU-0.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FU-1.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FU-2.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FU-3.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FU-4.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\FU-5.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TD-1.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TD-2.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TL-1.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TL-2.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TR-1.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TR-2.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TU-1.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TU-2.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\Map.png" />
+    <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\s-e.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="calibrate.h" />
@@ -82,6 +109,19 @@
     <ClInclude Include="data.h" />
     <ClInclude Include="debug.h" />
     <ClInclude Include="legos.h" />
+    <ClInclude Include="Target.h" />
+    <ClInclude Include="Tower.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="calibrate.cpp" />
+    <ClCompile Include="camera.cpp" />
+    <ClCompile Include="circles.cpp" />
+    <ClCompile Include="data.cpp" />
+    <ClCompile Include="debug.cpp" />
+    <ClCompile Include="legos.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Target.cpp" />
+    <ClCompile Include="Tower.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
