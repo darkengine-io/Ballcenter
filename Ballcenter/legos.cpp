@@ -86,6 +86,8 @@ namespace legos{
 		Vec3b color = image.at<Vec3b>(mean_point);
 		square s;
 		s.center = mean_point;
+		s.center.x /= (float)image.cols / (float)MAP_WIDTH;
+		s.center.y /= (float)image.rows / (float)MAP_HEIGHT;
 		s.color = pick_dominant_color(color);
 		return s;
 	}
