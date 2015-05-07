@@ -5,7 +5,7 @@ using namespace cv;
 #define SSTR( x ) dynamic_cast< std::ostringstream & >( \
 	( std::ostringstream() << std::dec << x ) ).str()
 
-char Target::path(int *x, int *y, int t, char type, char Dir, int *alive, int inity, int initx, int *wave, int *gp, int * speed, int *targetHit, int *HD, Mat * Out)
+char Target::path(int *x, int *y, int t, char type, char Dir, int *alive, int inity, int initx, int *wave, int *gp, int * speed, int *targetHit, int *HD, Mat * Out, getLego* start, Tower_C * TowerC, Tower_T * TowerT, Tower_S * TowerS)
 {
 	if (*x < initx + 65 & (*y >= inity - *speed & *y <= inity + *speed) & *alive)
 	{
@@ -64,6 +64,7 @@ char Target::path(int *x, int *y, int t, char type, char Dir, int *alive, int in
 									putText(*Out, "wave: " + SSTR(*wave), Point(300, 400), cv::FONT_HERSHEY_DUPLEX, 1, Scalar::all(255), 2, 3);
 								}
 								*wave = *wave + 1;
+								start->scan(TowerC, TowerT, TowerS);
 								*x = initx;
 								*y = inity;
 								*alive = 1;

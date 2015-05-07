@@ -1,4 +1,4 @@
-
+#pragma once
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv/cv.h>
@@ -56,4 +56,5 @@ public:
 	getLego(int * TR, int * TG, int *TB, Mat* Map);
 	int get(int color, int number, int axis);
 	void set(Tower_C * TowerC, Tower_T * TowerT, Tower_S * TowerS);
+	void getLego::scan(Tower_C * TowerC, Tower_T * TowerT, Tower_S * TowerS);
 };

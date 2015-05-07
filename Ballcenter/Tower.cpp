@@ -36,6 +36,10 @@ getLego::getLego(int * TR, int * TG, int * TB, Mat* Map)
 	*TG = Green;
 	*TB = Blue;
 }
+void getLego::scan(Tower_C * TowerC, Tower_T * TowerT, Tower_S * TowerS){
+	legos::rescan(cam, &Red, &Green, &Blue);
+	getLego::set(TowerC, TowerT, TowerS);
+}
 int getLego::get(int color, int number, int axis)
 {
 	return position[color][number][axis];

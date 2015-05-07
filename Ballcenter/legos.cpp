@@ -80,6 +80,8 @@ namespace legos{
 
 	square pass(Mat& image, int Count)
 	{
+		if (Count >= squares_g.size())
+			return square(); 
 		Point zero(0.0f, 0.0f);
 		Point sum = std::accumulate(squares_g[Count].begin(), squares_g[Count].end(), zero);
 		Point mean_point(sum.x / squares_g[Count].size(), sum.y / squares_g[Count].size());
@@ -126,6 +128,27 @@ namespace legos{
 		}
 
 		// TODO set up towers 
+		destroyWindow(LEGO_WIN);
+	}
+
+	void rescan(Camera& cam, int * red, int * green, int * blue){
+		Red = red;
+		Green = green;
+		Blue = blue;
+		namedWindow(LEGO_WIN, CV_WINDOW_NORMAL);
+		cvSetWindowProperty(LEGO_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
+		out = Mat::zeros(cam.aoi.height, cam.aoi.width, CV_8UC3);
+
+		out = Scalar(LEGO_COLOR);
+		imshow(LEGO_WIN, out);
+		//waitKey(500);
+
+		cam.get_frame();
+		cam.get_frame();
+		vector<vector<Point>> squares;
+		findSquares(cam.src, squares);
+		filter_squares(squares);
+		squares_g = squares;
 		destroyWindow(LEGO_WIN);
 	}
 

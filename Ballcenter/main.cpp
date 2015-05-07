@@ -71,7 +71,7 @@ int main(int argc, char** argv)
 		if (wave > 1)
 			speed = wave / 5 + 1;
 		Target tank(wave, targetHit);
-		Dir = tank.path(&x, &y, 1, 1, Dir, &alive, inity, initx, &wave, &gp, &speed, &targetHit, &HD, &Out);
+		Dir = tank.path(&x, &y, 1, 1, Dir, &alive, inity, initx, &wave, &gp, &speed, &targetHit, &HD, &Out, &start, TowerC, TowerT, TowerS);
 		cout << "Direction: " << Dir << endl;
 		cout << x << "," << y << endl;
 		Point textOrg(x, y);

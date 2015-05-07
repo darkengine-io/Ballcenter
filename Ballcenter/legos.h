@@ -12,6 +12,7 @@ namespace legos{
 	static int x, y, width, height;
 	square pass(cv::Mat& image, int Count);
 	void legos(Camera& cam, cv::Mat* Map, int * red, int * green, int * blue);
+	void rescan(Camera& cam, int * red, int * green, int * blue);
 	static std::vector<std::vector<cv::Point>> squares_g;
 }
 
