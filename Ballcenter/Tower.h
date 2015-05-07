@@ -53,7 +53,7 @@ public:
 	int Blue;
 	int  position[3][10][2];
 	int * passer;
-	getLego(int * TR, int * TG, int *TB);
+	getLego(int * TR, int * TG, int *TB, Mat* Map);
 	int get(int color, int number, int axis);
 	void set(Tower_C * TowerC, Tower_T * TowerT, Tower_S * TowerS);
 };

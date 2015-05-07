@@ -91,7 +91,7 @@ namespace legos{
 		s.color = pick_dominant_color(color);
 		return s;
 	}
-	void legos(Camera& cam, int * red, int * green, int * blue){
+	void legos(Camera& cam, Mat* Map, int * red, int * green, int * blue){
 		Red = red;
 		Green = green;
 		//vector<vector<Point>> squares;
@@ -102,8 +102,10 @@ namespace legos{
 			out = Mat::zeros(cam.aoi.height, cam.aoi.width, CV_8UC3);
 
 			out = Scalar(LEGO_COLOR);
-			imshow(LEGO_WIN, out);
+			imshow(LEGO_WIN, *Map);
 			wait_for_key();
+			imshow(LEGO_WIN, out);
+			waitKey(500);
 
 			cam.get_frame();
 			cam.get_frame();

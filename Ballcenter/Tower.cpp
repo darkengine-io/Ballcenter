@@ -14,7 +14,7 @@ vector<vector<Point>> blobs;
 vector<Vec4i> hierarchy;
 Camera cam;
 
-getLego::getLego(int * TR, int * TG, int * TB)
+getLego::getLego(int * TR, int * TG, int * TB, Mat* Map)
 {
 	Red = 0;
 	Green = 0;
@@ -29,7 +29,7 @@ getLego::getLego(int * TR, int * TG, int * TB)
 	cal::calibrate(cam);
 
 	dp("Legos");
-	legos::legos(cam, &Red, &Green, &Blue);
+	legos::legos(cam, Map, &Red, &Green, &Blue);
 	int total = Red + Green + Blue;
 	if (1)
 		*TR = Red;

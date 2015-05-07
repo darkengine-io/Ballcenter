@@ -26,7 +26,16 @@ int main(int argc, char** argv)
 	int TR;
 	int TG;
 	int TB;
-	getLego start(&TR, &TG, &TB);
+	Mat Map, OriginalMap;
+	Mat Out;
+	Map = imread(argv[1], CV_LOAD_IMAGE_UNCHANGED);   // Read the file
+	Map.copyTo(OriginalMap);
+	if (!Map.data)                              // Check for invalid input
+	{
+		cout << "Could not open or find the Map" << std::endl;
+		return -1;
+	}
+	getLego start(&TR, &TG, &TB, &Map);
 	int TN = TR + TG + TB;
 	int speed = 1;
 	char Dir = 'R';
@@ -40,22 +49,9 @@ int main(int argc, char** argv)
 		return -1;
 	}
 	Size Screen(OUT_WIDTH, OUT_HEIGHT);
-	Mat Map, OriginalMap;
-	Mat Out;
-
-
-	//Size Screen (800,600);
-
-
 	cvNamedWindow(GAME_WIN, CV_WINDOW_NORMAL);
 	cvSetWindowProperty(GAME_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
-	Map = imread(argv[1], CV_LOAD_IMAGE_UNCHANGED);   // Read the file
-	Map.copyTo(OriginalMap);
-	if (!Map.data)                              // Check for invalid input
-	{
-		cout << "Could not open or find the Map" << std::endl;
-		return -1;
-	}
+
 	int initx = 11;
 	int inity = 240;
 	int x = initx;
