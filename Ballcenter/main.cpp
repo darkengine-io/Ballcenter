@@ -40,7 +40,7 @@ int main( int argc, char** argv )
 		return -1;
 	}
 	Size Screen(OUT_WIDTH, OUT_HEIGHT);
-	Mat Map;
+	Mat Map, OriginalMap;
 	Mat Out;
 
 
@@ -50,6 +50,7 @@ int main( int argc, char** argv )
 	cvNamedWindow(GAME_WIN, CV_WINDOW_NORMAL);
 	cvSetWindowProperty(GAME_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
 	Map = imread(argv[1], CV_LOAD_IMAGE_UNCHANGED);   // Read the file
+	Map.copyTo(OriginalMap);
 	if(! Map.data )                              // Check for invalid input
 	{
 		cout <<  "Could not open or find the Map" << std::endl ;
@@ -69,7 +70,7 @@ int main( int argc, char** argv )
 	{
 		if(char(cvWaitKey(10)) ==27)
 			break;
-		Map = imread(argv[1], CV_LOAD_IMAGE_UNCHANGED);
+		OriginalMap.copyTo(Map);
 		Out = Map;
 		if (wave > 20)
 			//speed = wave / 10;
