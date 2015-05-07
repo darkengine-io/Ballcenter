@@ -82,9 +82,10 @@ namespace cal{
 
 	vector<Point> find_smallest_square(const vector<vector<Point> >& squares)
 	{
-		vector<Point> biggest_square;
+		vector<Point> smallest_square;
 
-		float min_area = FLT_MAX;
+		float max_area = FLT_MAX;
+		float min_area = 20000;
 		int max_square_idx = 0;
 		const int n_points = 4;
 
@@ -95,16 +96,16 @@ namespace cal{
 
 			//        cout << "find_largest_square: #" << i << " rectangle x:" << rectangle.x << " y:" << rectangle.y << " " << rectangle.width << "x" << rectangle.height << endl;
 
-			// Store the index position of the biggest square found
-			if (rectangle.area() < min_area)
+			// Store the index position of the smallest square found
+			if (rectangle.area() < max_area && rectangle.area() > min_area)
 			{
-				min_area = (float)rectangle.area();
+				max_area = (float)rectangle.area();
 				max_square_idx = i;
 			}
 		}
 
-		biggest_square = squares[max_square_idx];
-		return biggest_square;
+		smallest_square = squares[max_square_idx];
+		return smallest_square;
 	}
 
 	// helper function:
