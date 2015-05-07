@@ -68,9 +68,8 @@ int main(int argc, char** argv)
 			break;
 		OriginalMap.copyTo(Map);
 		Out = Map;
-		if (wave > 20)
-			//speed = wave / 10;
-			speed = 1;
+		if (wave > 1)
+			speed = wave / 5 + 1;
 		Target tank(wave, targetHit);
 		Dir = tank.path(&x, &y, 1, 1, Dir, &alive, inity, initx, &wave, &gp, &speed, &targetHit, &HD, &Out);
 		cout << "Direction: " << Dir << endl;
@@ -108,7 +107,7 @@ int main(int argc, char** argv)
 			cout << "0x100" << temp_val;
 			if ((temp_val < (TowerC[count].Range * TowerC[count].Range) & ((x + y) % 3 == 0)))
 				line(Out, Point(tank.Location[0] + 12, tank.Location[1] + 12), Point(TowerC[count].Location[0], TowerC[count].Location[1]), cv::Scalar(0, 222, 255), 1, 1);
-			if ((temp_val < (TowerC[count].Range * TowerC[count].Range) & (hit > wave - 5)))
+			if ((temp_val < (TowerC[count].Range * TowerC[count].Range) & (hit > wave+5)))
 			{
 				hit = 0;
 				targetHit = targetHit + TowerC[count].Damage;
@@ -130,7 +129,7 @@ int main(int argc, char** argv)
 			cout << "0x100" << temp_val;
 			if ((temp_val < (TowerT[count].Range * TowerT[count].Range) & ((x + y) % 3 == 0)))
 				line(Out, Point(tank.Location[0] + 12, tank.Location[1] + 12), Point(TowerT[count].Location[0], TowerT[count].Location[1]), cv::Scalar(0, 222, 255), 1, 1);
-			if ((temp_val < (TowerT[count].Range * TowerT[count].Range) & (hit > wave - 5)))
+			if ((temp_val < (TowerT[count].Range * TowerT[count].Range) & (hit > wave+5)))
 			{
 				hit = 0;
 				targetHit = targetHit + TowerT[count].Damage;
@@ -152,7 +151,7 @@ int main(int argc, char** argv)
 			cout << "0x100" << temp_val;
 			if ((temp_val < (TowerS[count].Range * TowerS[count].Range) & ((x + y) % 3 == 0)))
 				line(Out, Point(tank.Location[0] + 12, tank.Location[1] + 12), Point(TowerS[count].Location[0], TowerS[count].Location[1]), cv::Scalar(0, 222, 255), 1, 1);
-			if ((temp_val < (TowerS[count].Range * TowerS[count].Range) & (hit > wave - 5)))
+			if ((temp_val < (TowerS[count].Range * TowerS[count].Range) & (hit > wave+5)))
 			{
 				hit = 0;
 				targetHit = targetHit + TowerS[count].Damage;
