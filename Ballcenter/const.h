@@ -12,6 +12,7 @@
 #define CAL_WIN "Calibrate"
 #define LEGO_WIN "Calibrate"
 #define CAM_WIN "Camera"
+#define GAME_WIN "Game"
 #define CIRCLE_COLOR 100, 0, 155
 #define BLOB_COLOR 100, 0, 155
 #define OUT_BG 100, 0, 0

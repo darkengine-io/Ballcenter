@@ -47,7 +47,8 @@ int main( int argc, char** argv )
 	//Size Screen (800,600);
 	
 
-	cvNamedWindow("Game",WINDOW_AUTOSIZE);
+	cvNamedWindow(GAME_WIN, CV_WINDOW_NORMAL);
+	cvSetWindowProperty(GAME_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
 	Map = imread(argv[1], CV_LOAD_IMAGE_UNCHANGED);   // Read the file
 	if(! Map.data )                              // Check for invalid input
 	{
@@ -173,7 +174,7 @@ int main( int argc, char** argv )
 		putText(Out, "wave: " + SSTR(wave), wavep, cv::FONT_HERSHEY_DUPLEX, 1,Scalar::all(255), 2, 3);
 		putText(Out, "Life left: " + SSTR(gp), LL, cv::FONT_HERSHEY_DUPLEX, 1,Scalar::all(255), 2, 3);
 		resize(Out,Out,Screen);
-		imshow( "Game", Out );                   // Show our image inside it.
+		imshow(GAME_WIN, Out );                   // Show our image inside it.
 
 	}
 	waitKey(0);                                          // Wait for a keystroke in the window
