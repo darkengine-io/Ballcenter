@@ -56,7 +56,7 @@ int main( int argc, char** argv )
 		return -1;
 	}
 	int initx = 11;
-	int inity = 220;
+	int inity = 240;
 	int x = initx;
 	int y = inity;
 	int step = 0;
@@ -98,9 +98,9 @@ int main( int argc, char** argv )
 		//tunnel
 		Mat tunnel = imread("s-e.png", CV_LOAD_IMAGE_UNCHANGED);
 		resize(tunnel,tunnel,Size(70,50));
-		cv::Rect roit( Point(0,200), tunnel.size());
+		cv::Rect roit( Point(0,220), tunnel.size());
 		tunnel.copyTo(Map(roit));
-		cv::Rect roitt( Point(529,160), tunnel.size());
+		cv::Rect roitt( Point(529,180), tunnel.size());
 		tunnel.copyTo(Map(roitt));
 		//;
 		// Tower

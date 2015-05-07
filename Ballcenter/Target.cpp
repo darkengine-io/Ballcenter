@@ -14,35 +14,35 @@ char Target::path(int *x, int *y, int t, char type, char Dir, int *alive, int in
 	}
 	else
 	{
-		if (*y > inity - (230 - 110) & ((*x >= initx + 65 - *speed) & (*x <= initx + 65 + *speed)) & *alive)
+		if (*y > inity - (240 - 110) & ((*x >= initx + 65 - *speed) & (*x <= initx + 65 + *speed)) & *alive)
 		{
 			*y = *y - *speed;
 			Dir = 'U';
 		}
 		else
 		{
-			if (*x < initx + 190 & ((*y <= inity - (230 - 110) + *speed)&(*y >= inity - (230 - 110) - *speed)) & *alive)
+			if (*x < initx + 185 & ((*y <= inity - (240 - 110) + *speed)&(*y >= inity - (240 - 110) - *speed)) & *alive)
 			{
 				*x = *x + *speed;
 				Dir = 'R';
 			}
 			else
 			{
-				if (*y < inity - (230 - 265) & ((*x >= initx - *speed + 190) & (*x <= initx + *speed + 190)) & *alive)
+				if (*y < inity - (217 - 265) & ((*x >= initx - *speed + 185) & (*x <= initx + *speed + 185)) & *alive)
 				{
 					*y = *y + *speed;
 					Dir = 'D';
 				}
 				else
 				{
-					if (*x < initx + 350 & ((*y >= inity - *speed - (230 - 265)) & (*y <= inity + *speed - (230 - 265))) & *alive)
+					if (*x < initx + 345 & ((*y >= inity - *speed - (217 - 265)) & (*y <= inity + *speed - (217 - 265))) & *alive)
 					{
 						*x = *x + *speed;
 						Dir = 'R';
 					}
 					else
 					{
-						if (*y > inity - (230 - 190) & ((*x >= initx - *speed + 350)&(*x <= initx + *speed + 350)) & *alive)
+						if (*y > inity - (230 - 190) & ((*x >= initx - *speed + 345)&(*x <= initx + *speed + 345)) & *alive)
 						{
 							*y = *y - *speed;
 							Dir = 'U';
