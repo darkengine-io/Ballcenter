@@ -28,7 +28,7 @@ namespace legos{
 		const Point* p = &square[0];
 		int n = (int)square.size();
 		polylines(image, &p, &n, 1, true, color, 3);
-	} 
+	}
 	// 0 is blue, 1 is green, 2 is red
 	int pick_dominant_color(Vec3b color){
 		if (color[0] > color[1] && color[0] > color[2])
@@ -44,7 +44,7 @@ namespace legos{
 			return 2; // red
 		}
 	}
-			
+
 	// the function draws all the squares in the image
 	void drawSquares(Mat& image, Mat& out, const vector<vector<Point> >& squares)
 	{
@@ -149,7 +149,7 @@ namespace legos{
 					break;
 				}
 			}
-			if(finished)
+			if (finished)
 				break;
 		}
 		while (true){

@@ -80,57 +80,57 @@ char Target::path(int *x, int *y, int t, char type, char Dir, int *alive, int in
 	return Dir;
 }
 
-Target::Target(int wave , int HP)
+Target::Target(int wave, int HP)
 {
 	speed = wave;
 	health = HP;
 	Location[0] = 0;
 	Location[1] = 0;
 }
-void Target::Draw(Mat Screen,int x , int y , char Dir)
+void Target::Draw(Mat Screen, int x, int y, char Dir)
 {
 	int step;
-	if((((x+y)/3) % 2) == 1)
+	if ((((x + y) / 3) % 2) == 1)
 		step = 2;
 	else
 		step = 1;
 	Location[0] = x + 10;
-	Location[1] = y-10;
+	Location[1] = y - 10;
 	Mat tmp;
 	string name = "im/T";
 	name = name + Dir + "-" + SSTR(step) + ".png";
 	tmp = imread(name, CV_LOAD_IMAGE_UNCHANGED);
 	Mat tank;
-	resize(tmp,tank,Size(25,25));
-	cv::Rect roi( Point(Location[0],Location[1]), tank.size() );
+	resize(tmp, tank, Size(25, 25));
+	cv::Rect roi(Point(Location[0], Location[1]), tank.size());
 	tank.copyTo(Screen(roi));
 
-	Point barFrameA (0,-29);
-	Point barFrameB (40,-21);
+	Point barFrameA(0, -29);
+	Point barFrameB(40, -21);
 	if (health < 1)
 		health = 0;
 	if (health < 10)
-		rectangle(Screen, Point (x,y) + Point(0,-25) ,Point (x,y) + Point (40-health,-20),Scalar(0,255,0),2,2.0);
+		rectangle(Screen, Point(x, y) + Point(0, -25), Point(x, y) + Point(40 - health, -20), Scalar(0, 255, 0), 2, 2.0);
 	else{
-		if(health < 30)
-			rectangle(Screen, Point (x,y) + Point(0,-25) ,Point (x,y) + Point (40-health,-20),Scalar(0,255,255),2,2.0);
+		if (health < 30)
+			rectangle(Screen, Point(x, y) + Point(0, -25), Point(x, y) + Point(40 - health, -20), Scalar(0, 255, 255), 2, 2.0);
 		else{
-			rectangle(Screen, Point (x,y) + Point(0,-25) ,Point (x,y) + Point (40-health,-20),Scalar(0,0,255),2,2.0);
+			rectangle(Screen, Point(x, y) + Point(0, -25), Point(x, y) + Point(40 - health, -20), Scalar(0, 0, 255), 2, 2.0);
 		}
 	}
-	rectangle(Screen, Point (x,y) + barFrameA ,Point(x,y) + barFrameB,Scalar(225,0,0),3,1.0);
+	rectangle(Screen, Point(x, y) + barFrameA, Point(x, y) + barFrameB, Scalar(225, 0, 0), 3, 1.0);
 
 }
-void Target::Hit(Mat Screen,int x , int y,int num , char Dir)
+void Target::Hit(Mat Screen, int x, int y, int num, char Dir)
 {
-        Location[0] = x + 10;
-        Location[1] = y-10;
+	Location[0] = x + 10;
+	Location[1] = y - 10;
 	string name = "im/F";
 	name = name + Dir;
 	name = name + "-";
 	name = name + SSTR(num);
 	name = name + ".png";
-        Mat tmp;
+	Mat tmp;
 	if (Dir == 'R')
 		tmp = imread(name, CV_LOAD_IMAGE_UNCHANGED);
 	else
@@ -142,24 +142,24 @@ void Target::Hit(Mat Screen,int x , int y,int num , char Dir)
 			else
 				tmp = imread(name, CV_LOAD_IMAGE_UNCHANGED);
 
-        Mat tank;
-        resize(tmp,tank,Size(25,25));
-        cv::Rect roi( Point(Location[0],Location[1]), tank.size() );
-        tank.copyTo(Screen(roi));
+	Mat tank;
+	resize(tmp, tank, Size(25, 25));
+	cv::Rect roi(Point(Location[0], Location[1]), tank.size());
+	tank.copyTo(Screen(roi));
 
-        Point barFrameA (0,-29);
-        Point barFrameB (40,-21);
+	Point barFrameA(0, -29);
+	Point barFrameB(40, -21);
 	if (health < 1)
 		health = 0;
-        if (health < 10)
-                rectangle(Screen, Point (x,y) + Point(0,-25) ,Point (x,y) + Point (40-health,-20),Scalar(0,255,0),2,2.0);
-        else{
-                if(health < 30)
-                        rectangle(Screen, Point (x,y) + Point(0,-25) ,Point (x,y) + Point (40-health,-20),Scalar(0,255,255),2,2.0);
-                else{
-                        rectangle(Screen, Point (x,y) + Point(0,-25) ,Point (x,y) + Point (40-health,-20),Scalar(0,0,255),2,2.0);
-                }
-        }
-        rectangle(Screen, Point (x,y) + barFrameA ,Point(x,y) + barFrameB,Scalar(225,0,0),3,1.0);
+	if (health < 10)
+		rectangle(Screen, Point(x, y) + Point(0, -25), Point(x, y) + Point(40 - health, -20), Scalar(0, 255, 0), 2, 2.0);
+	else{
+		if (health < 30)
+			rectangle(Screen, Point(x, y) + Point(0, -25), Point(x, y) + Point(40 - health, -20), Scalar(0, 255, 255), 2, 2.0);
+		else{
+			rectangle(Screen, Point(x, y) + Point(0, -25), Point(x, y) + Point(40 - health, -20), Scalar(0, 0, 255), 2, 2.0);
+		}
+	}
+	rectangle(Screen, Point(x, y) + barFrameA, Point(x, y) + barFrameB, Scalar(225, 0, 0), 3, 1.0);
 
 }

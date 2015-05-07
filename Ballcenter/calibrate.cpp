@@ -60,7 +60,7 @@ namespace cal{
 			else
 				break;
 		}
-		
+
 		cam.aoi = boundingRect(Mat(smallest_square) * ((float)IN_HEIGHT / (float)CAL_HEIGHT));
 		destroyWindow(CAL_WIN);
 		cam.cam.set(CV_CAP_PROP_FRAME_WIDTH, IN_WIDTH);
