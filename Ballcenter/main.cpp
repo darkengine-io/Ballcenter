@@ -72,6 +72,8 @@ int main(int argc, char** argv)
 			speed = wave / 5 + 1;
 		Target tank(wave, targetHit);
 		Dir = tank.path(&x, &y, 1, 1, Dir, &alive, inity, initx, &wave, &gp, &speed, &targetHit, &HD, &Out, &start, TowerC, TowerT, TowerS);
+		if (Dir == 'E')
+			break;
 		cout << "Direction: " << Dir << endl;
 		cout << x << "," << y << endl;
 		Point textOrg(x, y);
@@ -173,7 +175,8 @@ int main(int argc, char** argv)
 		imshow(GAME_WIN, Out);                   // Show our image inside it.
 
 	}
-	waitKey(0);                                          // Wait for a keystroke in the window
+                                        // Wait for a keystroke in the window
 	cout << "Game Over!" << endl;
+	waitKey(500);
 	return 0;
 }
