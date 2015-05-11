@@ -47,6 +47,7 @@ namespace legos{
 		namedWindow(LEGO_WIN, CV_WINDOW_NORMAL);
 		cvSetWindowProperty(LEGO_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
 		while (true){
+			fps_start("squares");
 			out = Mat::zeros(cam.aoi.height, cam.aoi.width, CV_8UC3);
 
 			out = Scalar(LEGO_COLOR);
@@ -60,6 +61,7 @@ namespace legos{
 			filter_squares(squares);
 			drawSquares(cam.src, out, squares);
 			resize(out, out, Size(OUT_WIDTH, OUT_HEIGHT));
+			frun(text_ovl(out, std::to_string((int)fps_end("squares")) + " fps", Point(0, 15), Scalar(0, 0, 0)));
 			imshow(LEGO_WIN, out);
 		}
 
