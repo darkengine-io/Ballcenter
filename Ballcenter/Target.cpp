@@ -7,69 +7,76 @@ using namespace cv;
 
 char Target::path(int *x, int *y, int t, char type, char Dir, int *alive, int inity, int initx, int *wave, int *gp, int * speed, int *targetHit, int *HD, Mat * Out, getLego* start, Tower_C * TowerC, Tower_T * TowerT, Tower_S * TowerS)
 {
-	if (*x < initx + 65 & (*y >= inity - *speed & *y <= inity + *speed) & *alive)
+	if (*x < initx + 65 && (*y >= inity - *speed && *y <= inity + *speed) && *alive)
 	{
 		*x = *x + *speed;
 		Dir = 'R';
 	}
 	else
 	{
-		if (*y > inity - (240 - 110) & ((*x >= initx + 65 - *speed) & (*x <= initx + 65 + *speed)) & *alive)
+		if (*y > inity - (240 - 110) && ((*x >= initx + 65 - *speed) && (*x <= initx + 65 + *speed)) && *alive)
 		{
 			*y = *y - *speed;
 			Dir = 'U';
 		}
 		else
 		{
-			if (*x < initx + 185 & ((*y <= inity - (240 - 110) + *speed)&(*y >= inity - (240 - 110) - *speed)) & *alive)
+			if (*x < initx + 185 && ((*y <= inity - (240 - 110) + *speed)&&(*y >= inity - (240 - 110) - *speed)) && *alive)
 			{
 				*x = *x + *speed;
 				Dir = 'R';
 			}
 			else
 			{
-				if (*y < inity - (217 - 265) & ((*x >= initx - *speed + 185) & (*x <= initx + *speed + 185)) & *alive)
+				if (*y < inity - (217 - 265) && ((*x >= initx - *speed + 185) && (*x <= initx + *speed + 185)) && *alive)
 				{
 					*y = *y + *speed;
 					Dir = 'D';
 				}
 				else
 				{
-					if (*x < initx + 345 & ((*y >= inity - *speed - (217 - 265)) & (*y <= inity + *speed - (217 - 265))) & *alive)
+					if (*x < initx + 345 && ((*y >= inity - *speed - (217 - 265)) && (*y <= inity + *speed - (217 - 265))) && *alive)
 					{
 						*x = *x + *speed;
 						Dir = 'R';
 					}
 					else
 					{
-						if (*y > inity - (230 - 190) & ((*x >= initx - *speed + 345)&(*x <= initx + *speed + 345)) & *alive)
+						if (*y > inity - (230 - 190) && ((*x >= initx - *speed + 345)&&(*x <= initx + *speed + 345)) && *alive)
 						{
 							*y = *y - *speed;
 							Dir = 'U';
 						}
 						else
 						{
-							if (*x < initx + 535 & ((*y >= inity - *speed - (230 - 190))&(*y <= inity - (230 - 190) + *speed)) & *alive)
+							if (*x < initx + 535 && ((*y >= inity - *speed - (230 - 190))&&(*y <= inity - (230 - 190) + *speed)) && *alive)
 							{
 								*x = *x + *speed;
 								Dir = 'R';
 							}
 							else
 							{
-								if (*y == inity - (230 - 190) & ((*x >= initx - *speed)&(*x <= initx + *speed)) + 535 & *alive)
-									*gp = *gp - 1;
-								if (*gp == -1)
+								if (((*x >= initx - *speed)&&(*x <= initx + *speed)) + 535 && *alive)
 								{
-									return 'E';
-									putText(*Out, "wave: " + SSTR(*wave), Point(300, 400), cv::FONT_HERSHEY_DUPLEX, 1, Scalar::all(255), 2, 3);
+									*gp = *gp - 1;
+								//	waitKey();
 								}
+								if (*gp < 1)
+								{
+									*alive = 0;
+									putText(*Out, "Game Over at wave: " + SSTR(*wave), Point(300, 400), cv::FONT_HERSHEY_DUPLEX, 1, Scalar::all(255), 2, 3);
+									waitKey(500);
+									return 'E';
+								}
+
 								*wave = *wave + 1;
-								start->scan(TowerC, TowerT, TowerS);
+								
 								*x = initx;
 								*y = inity;
 								*alive = 1;
 								*targetHit = 0;
 								*HD = 0;
+								start->scan(TowerC, TowerT, TowerS);
 							}
 						}
 					}
