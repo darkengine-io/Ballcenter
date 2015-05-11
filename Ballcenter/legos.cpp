@@ -39,12 +39,7 @@ namespace legos{
 	{
 		for (size_t i = 0; i < squares.size(); i++)
 		{
-			Point zero(0.0f, 0.0f);
-			Point sum = std::accumulate(squares[i].begin(), squares[i].end(), zero);
-			Point mean_point(sum.x / squares[i].size(), sum.y / squares[i].size());
-			Vec3b color = image.at<Vec3b>(mean_point);
-			drawSquare(out, squares[i], Scalar(color));
-			text_ovl(out, std::to_string(pick_dominant_color(color)), mean_point, Scalar(color));
+			drawSquare(out, squares[i], Scalar(220,220,220));
 		}
 	}
 
@@ -55,24 +50,17 @@ namespace legos{
 			out = Mat::zeros(cam.aoi.height, cam.aoi.width, CV_8UC3);
 
 			out = Scalar(LEGO_COLOR);
-			imshow(LEGO_WIN, out);
-			wait_for_key();
-
+			//imshow(LEGO_WIN, out);
+			//wait_for_key();
+			waitKey(10);
 			cam.get_frame();
 			cam.get_frame();
 			vector<vector<Point>> squares;
 			findSquares(cam.src, squares);
 			filter_squares(squares);
-			cam.src.copyTo(out);
 			drawSquares(cam.src, out, squares);
 			resize(out, out, Size(OUT_WIDTH, OUT_HEIGHT));
 			imshow(LEGO_WIN, out);
-			if (wait_for_key() == 106){
-				continue;
-			}
-			else {
-				break;
-			}
 		}
 
 		// TODO set up towers 
