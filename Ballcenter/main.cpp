@@ -1,48 +1,34 @@
-#include "opencv2/highgui/highgui.hpp"
-#include "opencv2/imgproc/imgproc.hpp"
-#include <iostream>
-#include <stdio.h>
-#include "const.h"
-#include "debug.h"
-#include "circles.h"
-#include "camera.h"
-#include "calibrate.h"
-#include "data.h"
+#include<opencv2/opencv.hpp>
+#include<iostream>
+#include<vector>
 
-using namespace cv;
-
-cv::vector<cv::Vec<float, 3>> circles;
-Camera cam;
-
-int main(int argc, char** argv)
+int main(int argc, char *argv[])
 {
-	dp("Starting");
+	cv::Mat frame;
+	cv::Mat back;
+	cv::Mat fore;
+	cv::VideoCapture cap(0);
+	cv::BackgroundSubtractorMOG2 bg;
+	//bg.nmixtures = 3;
+	//bg.bShadowDetection = false;
 
-	dp("Setting up capture");
-	cam.open(0);
-	
-	dp("Calibrating");
-	cal::calibrate(cam);
+	std::vector<std::vector<cv::Point> > contours;
 
-	dp("Opening windows");
-	namedWindow(MAIN_WIN, CV_WINDOW_AUTOSIZE);
-	namedWindow(CAM_WIN, CV_WINDOW_AUTOSIZE);
-	namedWindow(OUT_WIN, CV_WINDOW_NORMAL);
-	//cvSetWindowProperty(OUT_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
-	while (true){
-		fps_start("loop");
-		cam.get_frame();
-		
-		bc::find_circles(cam.src, circles);
-		bc::draw_circles(cam.src, circles);
-		bc::draw_blobs(cam.src);
-		bc::redraw(cam.src);
-		data::tick(circles);
-		/// Draw the circles detected
+	cv::namedWindow("Frame");
+	cv::namedWindow("Background");
 
-		//imshow(MAIN_WIN, src);
-		if (waitKey(1) >= 0) break;
-		dp("--------------------");
+	for (;;)
+	{
+		cap >> frame;
+		bg.operator ()(frame, fore);
+		bg.getBackgroundImage(back);
+		cv::erode(fore, fore, cv::Mat());
+		cv::dilate(fore, fore, cv::Mat());
+		cv::findContours(fore, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
+		cv::drawContours(frame, contours, -1, cv::Scalar(0, 0, 255), 2);
+		cv::imshow("Frame", frame);
+		cv::imshow("Background", back);
+		if (cv::waitKey(30) >= 0) break;
 	}
 	return 0;
 }
