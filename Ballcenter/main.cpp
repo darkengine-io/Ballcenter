@@ -70,7 +70,8 @@ int main(int argc, char** argv)
 	CString PortSpecifier = "COM5";
 //	Serial * Port = new Serial (PortSpecifier);
 	//End of Serial port setup
-	for (int frame = 0; frame > -1; frame++)
+	int frame = 0;
+	while (true)
 	{
 		if (char(cvWaitKey(10)) == 27)
 			break;
@@ -199,7 +200,7 @@ int main(int argc, char** argv)
 		putText(Out, "Life left: " + SSTR(gp), LL, cv::FONT_HERSHEY_DUPLEX, 1, Scalar::all(255), 2, 3);
 		resize(Out, Out, Screen);
 		imshow(GAME_WIN, Out);                   // Show our image inside it.
-
+		frame++;
 	}
 //	Port->~Serial();		//Closing serial port
     // Wait for a keystroke in the window
