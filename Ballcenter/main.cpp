@@ -5,6 +5,9 @@
 #include <cstdio>
 #include <opencv/cv.h>
 #include <sstream>
+#include <windows.h>
+#include <atlstr.h>
+#include <stdint.h>
 
 #include "const.h"
 #include "Tower.h"
@@ -61,8 +64,13 @@ int main(int argc, char** argv)
 	int targetHit = 0;
 	int HD = 0;
 	int Start;
-
-	for (int i = 0; i > -1; i++)
+	//Serial Setup
+	int i = 0;
+	uint8_t out;	//can be int or char
+	CString PortSpecifier = "COM5";
+//	Serial * Port = new Serial (PortSpecifier);
+	//End of Serial port setup
+	for (int frame = 0; frame > -1; frame++)
 	{
 		if (char(cvWaitKey(10)) == 27)
 			break;
@@ -175,7 +183,8 @@ int main(int argc, char** argv)
 		imshow(GAME_WIN, Out);                   // Show our image inside it.
 
 	}
-                                        // Wait for a keystroke in the window
+//	Port->~Serial();		//Closing serial port
+    // Wait for a keystroke in the window
 	cout << "Game Over!" << endl;
 	waitKey(500);
 	return 0;

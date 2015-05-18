@@ -108,6 +108,8 @@
     <ClInclude Include="data.h" />
     <ClInclude Include="debug.h" />
     <ClInclude Include="legos.h" />
+    <ClInclude Include="Print.h" />
+    <ClInclude Include="Serial.h" />
     <ClInclude Include="Target.h" />
     <ClInclude Include="Tower.h" />
   </ItemGroup>
@@ -118,6 +120,7 @@
     <ClCompile Include="debug.cpp" />
     <ClCompile Include="legos.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Serial.cpp" />
     <ClCompile Include="Target.cpp" />
     <ClCompile Include="Tower.cpp" />
   </ItemGroup>
