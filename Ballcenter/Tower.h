@@ -3,6 +3,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv/cv.h>
 #include "Serial.h"
+#include "camera.h"
 using namespace cv;
 
 class Tower_C
@@ -55,12 +56,13 @@ public:
 class getLego
 {
 public:
+	Camera * cam;
 	int Red;
 	int Green;
 	int Blue;
 	int  position[3][10][2];
 	int * passer;
-	getLego(int * TR, int * TG, int *TB, Mat* Map);
+	getLego(int * TR, int * TG, int *TB, Mat* Map, Camera* caddr);
 	int get(int color, int number, int axis);
 	void set(Tower_C * TowerC, Tower_T * TowerT, Tower_S * TowerS);
 	void getLego::scan(Tower_C * TowerC, Tower_T * TowerT, Tower_S * TowerS);

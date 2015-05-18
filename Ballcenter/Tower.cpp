@@ -17,9 +17,8 @@ using namespace cv;
 cv::vector<cv::Vec<float, 3>> circles;
 vector<vector<Point>> blobs;
 vector<Vec4i> hierarchy;
-Camera cam;
 
-getLego::getLego(int * TR, int * TG, int * TB, Mat* Map)
+getLego::getLego(int * TR, int * TG, int * TB, Mat* Map, Camera* caddr)
 {
 	Red = 0;
 	Green = 0;
@@ -28,13 +27,14 @@ getLego::getLego(int * TR, int * TG, int * TB, Mat* Map)
 	dp("Starting");
 
 	dp("Setting up capture");
-	cam.open(0);
+	cam = caddr;
+	cam->open(0);
 
 	dp("Calibrating");
-	cal::calibrate(cam);
+	cal::calibrate(*cam);
 
 	dp("Legos");
-	legos::legos(cam, Map, &Red, &Green, &Blue);
+	legos::legos(*cam, Map, &Red, &Green, &Blue);
 	int total = Red + Green + Blue;
 	if (1)
 		*TR = Red;
@@ -42,7 +42,7 @@ getLego::getLego(int * TR, int * TG, int * TB, Mat* Map)
 	*TB = Blue;
 }
 void getLego::scan(Tower_C * TowerC, Tower_T * TowerT, Tower_S * TowerS){
-	legos::rescan(cam, &Red, &Green, &Blue);
+	legos::rescan(*cam, &Red, &Green, &Blue);
 	getLego::set(TowerC, TowerT, TowerS);
 }
 int getLego::get(int color, int number, int axis)
@@ -53,7 +53,7 @@ void getLego::set(Tower_C * TowerC, Tower_T * TowerT, Tower_S * TowerS)
 {
 	int bc = 0, gc = 0, rc = 0;
 	for (int i = 0; i < (Red + Green + Blue); i++){
-		square s = legos::pass(cam.src, i);
+		square s = legos::pass(cam->src, i);
 		switch (s.color){
 		case 0:
 			TowerS[bc].Location[0] = s.center.x;

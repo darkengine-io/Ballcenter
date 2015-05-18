@@ -1,4 +1,5 @@
 #include <opencv2/core/core.hpp>
+#include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 #include <math.h>
@@ -12,6 +13,7 @@
 #include "const.h"
 #include "Tower.h"
 #include "Target.h"
+#include "camera.h"
 
 #define SSTR( x ) dynamic_cast< std::ostringstream & >( \
         ( std::ostringstream() << std::dec << x ) ).str()
@@ -20,9 +22,20 @@
 using namespace cv;
 using namespace std;
 
+Camera* cam;
 
 int main(int argc, char** argv)
 {
+	cam = new Camera();
+	// Background subtractors
+	cv::Mat back;
+	cv::Mat fore;
+	cv::BackgroundSubtractorMOG2 bg;
+	std::vector<std::vector<cv::Point> > contours;
+	cv::namedWindow("Frame");
+	cv::namedWindow("Background");
+
+
 	int gp = 20;
 	int wave = 1;
 	int hit = 0;
@@ -38,7 +51,7 @@ int main(int argc, char** argv)
 		cout << "Could not open or find the Map" << std::endl;
 		return -1;
 	}
-	getLego start(&TR, &TG, &TB, &Map);
+	getLego start(&TR, &TG, &TB, &Map, cam);
 	int TN = TR + TG + TB;
 	int speed = 1;
 	char Dir = 'R';
@@ -73,6 +86,21 @@ int main(int argc, char** argv)
 	int frame = 0;
 	while (true)
 	{
+		// background subtraction
+		if (frame % 15 == 0){
+			cam->get_frame();
+			bg(cam->src, fore);
+			bg.getBackgroundImage(back);
+			cv::erode(fore, fore, cv::Mat());
+			cv::dilate(fore, fore, cv::Mat());
+			cv::findContours(fore, contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_NONE);
+			cv::drawContours(cam->src, contours, -1, cv::Scalar(0, 0, 255), 2);
+			cv::imshow("Frame", cam->src);
+			cv::imshow("Background", back);
+		}
+
+		if (cv::waitKey(30) >= 0) break;
+
 		if (char(cvWaitKey(10)) == 27)
 			break;
 		OriginalMap.copyTo(Map);
