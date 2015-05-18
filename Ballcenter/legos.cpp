@@ -141,7 +141,7 @@ namespace legos{
 
 		out = Scalar(LEGO_COLOR);
 		imshow(LEGO_WIN, out);
-		waitKey(100);
+		waitKey(200);
 
 		cam.get_frame();
 		cam.get_frame();

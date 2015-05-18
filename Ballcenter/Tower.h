@@ -16,6 +16,8 @@ public:
 	Tower_C(int x, int y);
 	Tower_C();
 	void Draw(Mat &Screen);
+	bool Reload(Serial * Data);
+	int Ammo;
 	//	private:
 };
 class Tower_T
@@ -29,6 +31,8 @@ public:
 	Tower_T(int x, int y);
 	Tower_T();
 	void Draw(Mat &Screen);
+	bool Reload(Serial * Data);
+	int Ammo;
 	//	private:
 };
 class Tower_S
@@ -42,6 +46,8 @@ public:
 	Tower_S(int x, int y);
 	Tower_S();
 	void Draw(Mat &Screen);
+	bool Reload(Serial * Data);
+	int Ammo;
 	//	private:
 };
 

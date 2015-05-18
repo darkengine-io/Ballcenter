@@ -1,3 +1,8 @@
+#ifndef SSTR( x )
+#define SSTR( x ) dynamic_cast< std::ostringstream & >( \
+        ( std::ostringstream() << std::dec << x ) ).str()
+#endif
+
 #include"Tower.h"
 #include "const.h"
 #include "debug.h"
@@ -81,6 +86,7 @@ Tower_C::Tower_C(int x, int y)
 	Color[0] = 0;
 	Color[1] = 0;
 	Color[2] = 225;
+	Ammo = 750;
 }
 Tower_C::Tower_C()
 {
@@ -90,6 +96,7 @@ Tower_C::Tower_C()
 	Color[0] = 0;
 	Color[1] = 0;
 	Color[2] = 225;
+	Ammo = 750;
 }
 Tower_T::Tower_T(int x, int y)
 {
@@ -101,6 +108,7 @@ Tower_T::Tower_T(int x, int y)
 	Color[0] = 0;
 	Color[1] = 225;
 	Color[2] = 0;
+	Ammo = 500;
 }
 Tower_T::Tower_T()
 {
@@ -110,6 +118,7 @@ Tower_T::Tower_T()
 	Color[0] = 0;
 	Color[1] = 225;
 	Color[2] = 0;
+	Ammo = 500;
 
 }
 Tower_S::Tower_S(int x, int y)
@@ -122,6 +131,7 @@ Tower_S::Tower_S(int x, int y)
 	Color[0] = 225;
 	Color[1] = 0;
 	Color[2] = 0;
+	Ammo = 250;
 }
 Tower_S::Tower_S()
 {
@@ -131,18 +141,73 @@ Tower_S::Tower_S()
 	Color[0] = 225;
 	Color[1] = 0;
 	Color[2] = 0;
+	Ammo = 250;
 }
 
 void Tower_C::Draw(Mat &Screen)
 {
+	if (Ammo <= 0)
+	{
+		Color[0] = 0;
+		Color[1] = 0;
+		Color[2] = 0;
+	}
+	else
+	{
+		Color[0] = 0;
+		Color[1] = 0;
+		Color[2] = 225;
+	}
 	circle(Screen, Point(Location[0], Location[1]), Range, Scalar(Color[0], Color[1], Color[2]), Damage, 1, 0);
+	putText(Screen, SSTR(Ammo), Point(Location[0] - 10, Location[1] + 15 + Range), cv::FONT_HERSHEY_DUPLEX, 0.5, Scalar::all(255), 0.5, 0.5);
 }
 void Tower_T::Draw(Mat &Screen)
 {
+	if (Ammo <= 0)
+	{
+		Color[0] = 0;
+		Color[1] = 0;
+		Color[2] = 0;
+	}
+	else
+	{
+		Color[0] = 0;
+		Color[1] = 225;
+		Color[2] = 0;
+	}
 	circle(Screen, Point(Location[0], Location[1]), Range, Scalar(Color[0], Color[1], Color[2]), Damage, 1, 0);
+	putText(Screen, SSTR(Ammo), Point(Location[0] - 10, Location[1] + 15 + Range), cv::FONT_HERSHEY_DUPLEX, 0.5, Scalar::all(255), 0.5, 0.5);
 }
 void Tower_S::Draw(Mat &Screen)
 {
+	if (Ammo <= 0)
+	{
+		Color[0] = 0;
+		Color[1] = 0;
+		Color[2] = 0;
+	}
+	else
+	{
+		Color[0] = 225;
+		Color[1] = 0;
+		Color[2] = 0;
+	}
 	circle(Screen, Point(Location[0], Location[1]), Range, Scalar(Color[0], Color[1], Color[2]), Damage, 1, 0);
+	putText(Screen, SSTR(Ammo), Point(Location[0] - 10, Location[1] + 15 + Range), cv::FONT_HERSHEY_DUPLEX, 0.5, Scalar::all(255), 0.5, 0.5);
 }
 
+bool Tower_C::Reload(Serial * Data)
+{
+	bool status = false;
+	return status;
+}
+bool Tower_T::Reload(Serial * Data)
+{
+	bool status = false;
+	return status;
+}
+bool Tower_S::Reload(Serial * Data)
+{
+	bool status = false;
+	return status;
+}
