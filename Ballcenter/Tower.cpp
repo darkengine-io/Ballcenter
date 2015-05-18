@@ -78,7 +78,7 @@ void getLego::set(Tower_C * TowerC, Tower_T * TowerT, Tower_S * TowerS)
 
 Tower_C::Tower_C(int x, int y)
 {
-	Damage = 1;
+	Damage =3;
 	Range = 80;
 	Capacity = 5;
 	Location[0] = x;
@@ -91,7 +91,7 @@ Tower_C::Tower_C(int x, int y)
 
 Tower_T::Tower_T(int x, int y)
 {
-	Damage = 2;
+	Damage = 6;
 	Range = 70;
 	Capacity = 4;
 	Location[0] = x;
@@ -104,7 +104,7 @@ Tower_T::Tower_T(int x, int y)
 
 Tower_S::Tower_S(int x, int y)
 {
-	Damage = 3;
+	Damage = 9;
 	Range = 60;
 	Capacity = 3;
 	Location[0] = x;

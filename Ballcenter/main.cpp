@@ -53,7 +53,7 @@ int main(int argc, char** argv)
 	}
 	getLego start(&TR, &TG, &TB, &Map, cam);
 	int TN = TR + TG + TB;
-	int speed = 1;
+	int speed = 5;
 	char Dir = 'R';
 	Tower_C * TowerC = new Tower_C[TR];
 	Tower_T * TowerT = new Tower_T[TG];
@@ -106,7 +106,7 @@ int main(int argc, char** argv)
 		OriginalMap.copyTo(Map);
 		Out = Map;
 		if (wave > 1)
-			speed = wave / 5 + 1;
+			speed = wave / 5 + 5;
 		Target tank(wave, targetHit);
 		Dir = tank.path(&x, &y, 1, 1, Dir, &alive, inity, initx, &wave, &gp, &speed, &targetHit, &HD, &Out, &start, TowerC, TowerT, TowerS);
 		if (Dir == 'E')
