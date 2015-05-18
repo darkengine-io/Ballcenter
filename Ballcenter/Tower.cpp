@@ -88,16 +88,7 @@ Tower_C::Tower_C(int x, int y)
 	Color[2] = 225;
 	Ammo = 750;
 }
-Tower_C::Tower_C()
-{
-	Damage = 1;
-	Range = 80;
-	Capacity = 5;
-	Color[0] = 0;
-	Color[1] = 0;
-	Color[2] = 225;
-	Ammo = 750;
-}
+
 Tower_T::Tower_T(int x, int y)
 {
 	Damage = 2;
@@ -110,17 +101,7 @@ Tower_T::Tower_T(int x, int y)
 	Color[2] = 0;
 	Ammo = 500;
 }
-Tower_T::Tower_T()
-{
-	Damage = 2;
-	Range = 70;
-	Capacity = 4;
-	Color[0] = 0;
-	Color[1] = 225;
-	Color[2] = 0;
-	Ammo = 500;
 
-}
 Tower_S::Tower_S(int x, int y)
 {
 	Damage = 3;
@@ -128,16 +109,6 @@ Tower_S::Tower_S(int x, int y)
 	Capacity = 3;
 	Location[0] = x;
 	Location[1] = y;
-	Color[0] = 225;
-	Color[1] = 0;
-	Color[2] = 0;
-	Ammo = 250;
-}
-Tower_S::Tower_S()
-{
-	Damage = 3;
-	Range = 60;
-	Capacity = 3;
 	Color[0] = 225;
 	Color[1] = 0;
 	Color[2] = 0;

@@ -14,8 +14,7 @@ public:
 	int Capacity;
 	int Location[2];
 	int Color[3];
-	Tower_C(int x, int y);
-	Tower_C();
+	Tower_C(int x = 0, int y = 0);
 	void Draw(Mat &Screen);
 	bool Reload(Serial * Data);
 	int Ammo;
@@ -29,8 +28,7 @@ public:
 	int Capacity;
 	int Location[2];
 	int Color[3];
-	Tower_T(int x, int y);
-	Tower_T();
+	Tower_T(int x=0, int y=0);
 	void Draw(Mat &Screen);
 	bool Reload(Serial * Data);
 	int Ammo;
@@ -44,8 +42,7 @@ public:
 	int Capacity;
 	int Location[2];
 	int Color[3];
-	Tower_S(int x, int y);
-	Tower_S();
+	Tower_S(int x = 0, int y = 0);
 	void Draw(Mat &Screen);
 	bool Reload(Serial * Data);
 	int Ammo;
