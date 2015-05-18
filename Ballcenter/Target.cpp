@@ -77,7 +77,6 @@ char Target::path(int *x, int *y, int t, char type, char Dir, int *alive, int in
 								*alive = 1;
 								*targetHit = 0;
 								*HD = 0;
-								start->scan(TowerC, TowerT, TowerS);
 							}
 						}
 					}
