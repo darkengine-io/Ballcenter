@@ -100,6 +100,7 @@
     <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TU-2.png" />
     <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\Map.png" />
     <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\s-e.png" />
+    <Image Include="s-e-2.png" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="calibrate.h" />

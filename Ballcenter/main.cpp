@@ -103,9 +103,9 @@ int main(int argc, char** argv)
 		}
 		//tunnel
 		Mat tunnel = imread("s-e.png", CV_LOAD_IMAGE_UNCHANGED);
-		resize(tunnel, tunnel, Size(70, 50));
 		cv::Rect roit(Point(0, 220), tunnel.size());
 		tunnel.copyTo(Map(roit));
+		tunnel = imread("s-e-2.png", CV_LOAD_IMAGE_UNCHANGED);
 		cv::Rect roitt(Point(529, 180), tunnel.size());
 		tunnel.copyTo(Map(roitt));
 		//;
