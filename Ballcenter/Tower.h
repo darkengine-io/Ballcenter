@@ -2,7 +2,13 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
 #include <opencv/cv.h>
+#include <cmath>
+#include <math.h>
+#include <stdio.h>
 #include "Serial.h"
+
+#define PI 3.14159265358979323846
+
 using namespace cv;
 
 class Tower_C
