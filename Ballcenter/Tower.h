@@ -16,14 +16,16 @@ class Tower_C
 public:
 	int Damage;
 	int Range;
-	int Capacity;
+	int Rate;
 	int Location[2];
 	int Color[3];
 	Tower_C(int x, int y);
 	Tower_C();
 	void Draw(Mat &Screen);
-	bool Reload(Serial * Data);
+	bool Reload(uint8_t * Data);
 	int Ammo;
+	uint8_t * reload_trigger = new uint8_t[8];
+	Point* ammoCircle(int i);
 	//	private:
 };
 class Tower_T
@@ -31,14 +33,16 @@ class Tower_T
 public:
 	int Damage;
 	int Range;
-	int Capacity;
+	int Rate;
 	int Location[2];
 	int Color[3];
 	Tower_T(int x, int y);
 	Tower_T();
 	void Draw(Mat &Screen);
-	bool Reload(Serial * Data);
+	bool Reload(uint8_t * Data);
 	int Ammo;
+	uint8_t * reload_trigger = new uint8_t[8];
+	Point* ammoCircle(int i);
 	//	private:
 };
 class Tower_S
@@ -46,14 +50,16 @@ class Tower_S
 public:
 	int Damage;
 	int Range;
-	int Capacity;
+	int Rate;
 	int Location[2];
 	int Color[3];
 	Tower_S(int x, int y);
 	Tower_S();
 	void Draw(Mat &Screen);
-	bool Reload(Serial * Data);
+	bool Reload(uint8_t * Data);
 	int Ammo;
+	uint8_t * reload_trigger = new uint8_t[8];
+	Point* ammoCircle(int i);
 	//	private:
 };
 

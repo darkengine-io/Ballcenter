@@ -83,8 +83,8 @@ int main(int argc, char** argv)
 		Dir = tank.path(&x, &y, 1, 1, Dir, &alive, inity, initx, &wave, &gp, &speed, &targetHit, &HD, &Out, &start, TowerC, TowerT, TowerS);
 		if (Dir == 'E')
 			break;
-		cout << "Direction: " << Dir << endl;
-		cout << x << "," << y << endl;
+		//cout << "Direction: " << Dir << endl;
+		//cout << x << "," << y << endl;
 		Point textOrg(x, y);
 		Point wavep(300, 80);
 		Point LL(280, 40);
@@ -110,21 +110,24 @@ int main(int argc, char** argv)
 		cv::Rect roitt(Point(529, 180), tunnel.size());
 		tunnel.copyTo(Map(roitt));
 		//;
+		//Reload Init
+		Port->ReadByte(serialData, 16);
+		//
 		// Tower
 		//Red
 		for (int count = 0; count < TR; count++)
 		{
 			//Reload
-//			cout << count << ": " << TowerC[count].Reload(Port) << endl;
+			if (TowerC[count].Reload(serialData) == true) 
+				TowerC[count].Ammo = TowerC[count].Ammo + 1;
 			//
-			int temp_val = pow((tank.Location[0] + 12 - TowerC[count].Location[0]), 2) + pow((tank.Location[1] + 11 - TowerC[count].Location[1]), 2);
-			cout << "0x100" << temp_val;
-			if ((temp_val < (TowerC[count].Range * TowerC[count].Range) && ((frame) % 3 == 0) && (TowerC[count].Ammo > 0)))
+			int temp_val = sqrt(pow((tank.Location[0] + 12 - TowerC[count].Location[0]), 2) + pow((tank.Location[1] + 11 - TowerC[count].Location[1]), 2));
+			if ((temp_val < TowerC[count].Range) && (frame % 3 == 0) && (TowerC[count].Ammo > 0))
 			{
-				line(Out, Point(tank.Location[0] + 12, tank.Location[1] + 12), Point(TowerC[count].Location[0], TowerC[count].Location[1]), cv::Scalar(0, 222, 255), 1, 1);
+				line(Out, Point(tank.Location[0] + 12, tank.Location[1] + 12), Point(TowerC[count].Location[0], TowerC[count].Location[1]), cv::Scalar(TowerC[count].Color[0], TowerC[count].Color[1], TowerC[count].Color[2]), TowerC[count].Damage, 1);
 				TowerC[count].Ammo = TowerC[count].Ammo - 1;
 			}
-			if ((temp_val < (TowerC[count].Range * TowerC[count].Range) && (hit > wave + 5) && (TowerC[count].Ammo > 0)))
+			if ((temp_val < TowerC[count].Range) && (hit > wave + 5) && (TowerC[count].Ammo > 0))
 			{
 				hit = 0;
 				targetHit = targetHit + TowerC[count].Damage;
@@ -133,7 +136,6 @@ int main(int argc, char** argv)
 			{
 				hit++;
 			}
-			cout << endl << hit << endl;
 		}
 		for (int count = 0; count < TR; count++)
 		{
@@ -143,16 +145,17 @@ int main(int argc, char** argv)
 		for (int count = 0; count < TG; count++)
 		{
 			//Reload
-//			cout << count << ": " << TowerC[count].Reload(Port) << endl;
+
+			if (TowerT[count].Reload(serialData) == true) 
+				TowerT[count].Ammo = TowerT[count].Ammo + 1;
 			//
-			int temp_val = pow((tank.Location[0] + 12 - TowerT[count].Location[0]), 2) + pow((tank.Location[1] + 11 - TowerT[count].Location[1]), 2);
-			cout << "0x100" << temp_val;
-			if ((temp_val < (TowerT[count].Range * TowerT[count].Range) && ((frame) % 2 == 0) && (TowerS[count].Ammo > 0)))
+			int temp_val = sqrt(pow((tank.Location[0] + 12 - TowerT[count].Location[0]), 2) + pow((tank.Location[1] + 11 - TowerT[count].Location[1]), 2));
+			if ((temp_val < TowerT[count].Range) && (frame % 3 == 0) && (TowerT[count].Ammo > 0))
 			{
-				line(Out, Point(tank.Location[0] + 12, tank.Location[1] + 12), Point(TowerT[count].Location[0], TowerT[count].Location[1]), cv::Scalar(0, 222, 255), 1, 1);
+				line(Out, Point(tank.Location[0] + 12, tank.Location[1] + 12), Point(TowerT[count].Location[0], TowerT[count].Location[1]), cv::Scalar(TowerT[count].Color[0], TowerT[count].Color[1], TowerT[count].Color[2]), TowerT[count].Damage, 1);
 				TowerT[count].Ammo = TowerT[count].Ammo - 1;
 			}
-			if ((temp_val < (TowerT[count].Range * TowerT[count].Range) && (hit > wave + 5) && (TowerS[count].Ammo > 0)))
+			if ((temp_val < TowerT[count].Range) && (hit > wave + 5) && (TowerT[count].Ammo > 0))
 			{
 				hit = 0;
 				targetHit = targetHit + TowerT[count].Damage;
@@ -161,7 +164,6 @@ int main(int argc, char** argv)
 			{
 				hit++;
 			}
-			cout << endl << hit << endl;
 		}
 		for (int count = 0; count < TG; count++)
 		{
@@ -171,16 +173,16 @@ int main(int argc, char** argv)
 		for (int count = 0; count < TB; count++)
 		{
 			//Reload
-//			cout << count << ": " << TowerC[count].Reload(Port) << endl;
+			if (TowerS[count].Reload(serialData) == true)
+				TowerS[count].Ammo = TowerS[count].Ammo + 1;
 			//
-			int temp_val = pow((tank.Location[0] + 12 - TowerS[count].Location[0]), 2) + pow((tank.Location[1] + 11 - TowerS[count].Location[1]), 2);
-			cout << "0x100" << temp_val;
-			if ((temp_val < (TowerS[count].Range * TowerS[count].Range) && ((frame) % 3 == 0) && (TowerS[count].Ammo > 0)))
+			int temp_val = sqrt(pow((tank.Location[0] + 12 - TowerS[count].Location[0]), 2) + pow((tank.Location[1] + 11 - TowerS[count].Location[1]), 2));
+			if ((temp_val < TowerS[count].Range) && (frame % 3 == 0) && (TowerS[count].Ammo > 0))
 			{
-				line(Out, Point(tank.Location[0] + 12, tank.Location[1] + 12), Point(TowerS[count].Location[0], TowerS[count].Location[1]), cv::Scalar(0, 222, 255), 1, 1);
+				line(Out, Point(tank.Location[0] + 12, tank.Location[1] + 12), Point(TowerS[count].Location[0], TowerS[count].Location[1]), cv::Scalar(TowerS[count].Color[0], TowerS[count].Color[1], TowerS[count].Color[2]), TowerS[count].Damage, 1);
 				TowerS[count].Ammo = TowerS[count].Ammo - 1;
 			}
-			if ((temp_val < (TowerS[count].Range * TowerS[count].Range) && (hit > wave + 5) && (TowerS[count].Ammo > 0)))
+			if ((temp_val < TowerS[count].Range) && (hit > wave + 5) && (TowerS[count].Ammo > 0))
 			{
 				hit = 0;
 				targetHit = targetHit + TowerS[count].Damage;
