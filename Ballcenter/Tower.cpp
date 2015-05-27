@@ -11,6 +11,7 @@
 #include "calibrate.h"
 #include "legos.h"
 #include "data.h"
+#include "Print.h"
 
 using namespace cv;
 

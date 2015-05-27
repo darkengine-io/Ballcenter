@@ -66,12 +66,13 @@ int main(int argc, char** argv)
 	int Start;
 	//Serial Setup
 	int i = 0;
-	uint8_t out;	//can be int or char
+	uint8_t * serialData = new uint8_t[8];	//can be int or char
 	CString PortSpecifier = "COM5";
-//	Serial * Port = new Serial (PortSpecifier);
+	Serial * Port = new Serial (PortSpecifier);
 	//End of Serial port setup
 	for (int frame = 0; frame > -1; frame++)
 	{
+		
 		if (char(cvWaitKey(10)) == 27)
 			break;
 		OriginalMap.copyTo(Map);
@@ -188,12 +189,12 @@ int main(int argc, char** argv)
 			{
 				hit++;
 			}
-			cout << endl << hit << endl;
 		}
 		for (int count = 0; count < TB; count++)
 		{
 			TowerS[count].Draw(Out);
 		}
+
 
 		putText(Out, "wave: " + SSTR(wave), wavep, cv::FONT_HERSHEY_DUPLEX, 1, Scalar::all(255), 2, 3);
 		putText(Out, "Life left: " + SSTR(gp), LL, cv::FONT_HERSHEY_DUPLEX, 1, Scalar::all(255), 2, 3);
@@ -201,7 +202,7 @@ int main(int argc, char** argv)
 		imshow(GAME_WIN, Out);                   // Show our image inside it.
 
 	}
-//	Port->~Serial();		//Closing serial port
+	Port->~Serial();		//Closing serial port
     // Wait for a keystroke in the window
 	cout << "Game Over!" << endl;
 	waitKey(500);
