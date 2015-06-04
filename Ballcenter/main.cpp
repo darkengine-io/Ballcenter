@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 	int TB;
 	Mat Map, OriginalMap;
 	Mat Out;
-	Map = imread(argv[1], CV_LOAD_IMAGE_UNCHANGED);   // Read the file
+	Map = imread("Map.png", CV_LOAD_IMAGE_UNCHANGED);   // Read the file
 	Map.copyTo(OriginalMap);
 	if (!Map.data)                              // Check for invalid input
 	{
