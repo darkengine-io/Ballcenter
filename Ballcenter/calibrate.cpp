@@ -51,11 +51,10 @@ namespace cal{
 			vector<vector<Point>> squares;
 			findSquares(cam.src, squares);
 			drawSquares(cam.src, squares, Scalar(0, 255, 0));
-			if (squares.size() < 1){
-				continue;
+			if (squares.size() > 0){
+				smallest_square = find_smallest_square(squares);
+				drawSquare(cam.src, smallest_square, Scalar(255, 0, 0));
 			}
-			smallest_square = find_smallest_square(squares);
-			drawSquare(cam.src, smallest_square, Scalar(255, 0, 0));
 			resize(cam.src, cam.src, Size(OUT_WIDTH, OUT_HEIGHT));
 			imshow(CAL_WIN, cam.src);
 			if (wait_for_key() == 106)

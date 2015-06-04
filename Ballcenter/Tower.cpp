@@ -11,6 +11,7 @@
 #include "calibrate.h"
 #include "legos.h"
 #include "data.h"
+#include "Print.h"
 
 using namespace cv;
 
@@ -79,135 +80,154 @@ void getLego::set(Tower_C * TowerC, Tower_T * TowerT, Tower_S * TowerS)
 Tower_C::Tower_C(int x, int y)
 {
 	Damage = 1;
-	Range = 80;
-	Capacity = 5;
+	Range = 90;
+	Rate = 5;
 	Location[0] = x;
 	Location[1] = y;
 	Color[0] = 0;
 	Color[1] = 0;
 	Color[2] = 225;
-	Ammo = 750;
+	Ammo = 150;
 }
 Tower_C::Tower_C()
 {
 	Damage = 1;
-	Range = 80;
-	Capacity = 5;
+	Range = 90;
+	Rate = 5;
 	Color[0] = 0;
 	Color[1] = 0;
 	Color[2] = 225;
-	Ammo = 750;
+	Ammo = 150;
 }
 Tower_T::Tower_T(int x, int y)
 {
 	Damage = 2;
-	Range = 70;
-	Capacity = 4;
+	Range = 80;
+	Rate = 4;
 	Location[0] = x;
 	Location[1] = y;
 	Color[0] = 0;
 	Color[1] = 225;
 	Color[2] = 0;
-	Ammo = 500;
+	Ammo = 100;
 }
 Tower_T::Tower_T()
 {
 	Damage = 2;
-	Range = 70;
-	Capacity = 4;
+	Range = 80;
+	Rate = 4;
 	Color[0] = 0;
 	Color[1] = 225;
 	Color[2] = 0;
-	Ammo = 500;
+	Ammo = 100;
 
 }
 Tower_S::Tower_S(int x, int y)
 {
 	Damage = 3;
-	Range = 60;
-	Capacity = 3;
+	Range = 70;
+	Rate = 3;
 	Location[0] = x;
 	Location[1] = y;
 	Color[0] = 225;
 	Color[1] = 0;
 	Color[2] = 0;
-	Ammo = 250;
+	Ammo = 50;
 }
 Tower_S::Tower_S()
 {
 	Damage = 3;
-	Range = 60;
-	Capacity = 3;
+	Range = 70;
+	Rate = 3;
 	Color[0] = 225;
-	Color[1] = 0;
-	Color[2] = 0;
-	Ammo = 250;
+	Color[1] = 179;
+	Color[2] = 72;
+	Ammo = 50;
 }
 
 void Tower_C::Draw(Mat &Screen)
 {
-	if (Ammo <= 0)
+	for (int i = 0; i < Ammo; i++)
 	{
-		Color[0] = 0;
-		Color[1] = 0;
-		Color[2] = 0;
+		Point * position = ammoCircle(i);
+		line(Screen, position[0], position[1], Scalar(Color[0], Color[1], Color[2]), 1, 1, 0);
 	}
-	else
+	for (int i = Ammo; i < 150; i++)
 	{
-		Color[0] = 0;
-		Color[1] = 0;
-		Color[2] = 225;
+		Point * position = ammoCircle(i);
+		line(Screen, position[0], position[1], Scalar(0, 0, 0), 1, 1, 0);
 	}
-	circle(Screen, Point(Location[0], Location[1]), Range, Scalar(Color[0], Color[1], Color[2]), Damage, 1, 0);
-	putText(Screen, SSTR(Ammo), Point(Location[0] - 10, Location[1] + 15 + Range), cv::FONT_HERSHEY_DUPLEX, 0.5, Scalar::all(255), 0.5, 0.5);
 }
 void Tower_T::Draw(Mat &Screen)
 {
-	if (Ammo <= 0)
+	for (int i = 0; i < Ammo; i++)
 	{
-		Color[0] = 0;
-		Color[1] = 0;
-		Color[2] = 0;
+		Point * position = ammoCircle(i);
+		line(Screen, position[0], position[1], Scalar(Color[0], Color[1], Color[2]), 1, 1, 0);
 	}
-	else
+	for (int i = Ammo; i < 100; i++)
 	{
-		Color[0] = 0;
-		Color[1] = 225;
-		Color[2] = 0;
+		Point * position = ammoCircle(i);
+		line(Screen, position[0], position[1], Scalar(0, 0, 0), 1, 1, 0);
 	}
-	circle(Screen, Point(Location[0], Location[1]), Range, Scalar(Color[0], Color[1], Color[2]), Damage, 1, 0);
-	putText(Screen, SSTR(Ammo), Point(Location[0] - 10, Location[1] + 15 + Range), cv::FONT_HERSHEY_DUPLEX, 0.5, Scalar::all(255), 0.5, 0.5);
+
 }
 void Tower_S::Draw(Mat &Screen)
-{
-	if (Ammo <= 0)
+{ 
+	for (int i = 0; i < Ammo; i++)
 	{
-		Color[0] = 0;
-		Color[1] = 0;
-		Color[2] = 0;
+		Point * position = ammoCircle(i);
+		line(Screen, position[0], position[1], Scalar(Color[0], Color[1], Color[2]), 1, 1, 0);
 	}
-	else
+	for (int i = Ammo; i < 50; i++)
 	{
-		Color[0] = 225;
-		Color[1] = 0;
-		Color[2] = 0;
+		Point * position = ammoCircle(i);
+		line(Screen, position[0], position[1], Scalar(0, 0, 0), 1, 1, 0);
 	}
-	circle(Screen, Point(Location[0], Location[1]), Range, Scalar(Color[0], Color[1], Color[2]), Damage, 1, 0);
-	putText(Screen, SSTR(Ammo), Point(Location[0] - 10, Location[1] + 15 + Range), cv::FONT_HERSHEY_DUPLEX, 0.5, Scalar::all(255), 0.5, 0.5);
 }
 
-bool Tower_C::Reload(Serial * Data)
+bool Tower_C::Reload(uint8_t * Data)
 {
-	bool status = false;
-	return status;
+	return ((Ammo < 150) && (int(Data[2]) > 100));
 }
-bool Tower_T::Reload(Serial * Data)
+bool Tower_T::Reload(uint8_t * Data)
 {
-	bool status = false;
-	return status;
+	return ((Ammo < 100) && (int(Data[2]) > 100));
 }
-bool Tower_S::Reload(Serial * Data)
+bool Tower_S::Reload(uint8_t * Data)
 {
-	bool status = false;
-	return status;
+	return ((Ammo < 50) && (int(Data[2]) > 100));
+}
+Point* Tower_C::ammoCircle(int i)
+{
+	float angle = (2 * PI) / 150;
+	cv::Point * temp = new cv::Point[2];
+	temp[0].x = Range * cos(i * angle) + Location[0];
+	temp[0].y = Range * sin(i * angle) + Location[1];
+	temp[1].x = (Range + 2) * cos(i * angle) + Location[0];
+	temp[1].y = (Range + 2) * sin(i * angle) + Location[1];
+
+	return temp;
+}
+Point* Tower_T::ammoCircle(int i)
+{
+	float angle = (2 * PI) / 100;
+	cv::Point * temp = new cv::Point[2];
+	temp[0].x = Range * cos(i * angle) + Location[0];
+	temp[0].y = Range * sin(i * angle) + Location[1];
+	temp[1].x = (Range + 2) * cos(i * angle) + Location[0];
+	temp[1].y = (Range + 2) * sin(i * angle) + Location[1];
+
+	return temp;
+}
+Point* Tower_S::ammoCircle(int i)
+{
+	float angle = (2 * PI) / 50;
+	cv::Point * temp = new cv::Point[2];
+	temp[0].x = Range * cos(i * angle) + Location[0];
+	temp[0].y = Range * sin(i * angle) + Location[1];
+	temp[1].x = (Range + 2) * cos(i * angle) + Location[0];
+	temp[1].y = (Range + 2) * sin(i * angle) + Location[1];
+
+	return temp;
 }

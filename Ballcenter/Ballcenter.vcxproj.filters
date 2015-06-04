@@ -117,6 +117,9 @@
     <Image Include="..\..\..\..\Visual Studio 2010\Projects\Ballcenter\Ballcenter\im\TU-2.png">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="s-e-2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Target.h">
