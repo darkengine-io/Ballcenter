@@ -1,10 +1,10 @@
 // Input settings
 #define IN_WIDTH 1280
-#define IN_HEIGHT 960
+#define IN_HEIGHT 720
 #define MAP_WIDTH 600
 #define MAP_HEIGHT 450
 #define OUT_WIDTH 1280
-#define OUT_HEIGHT 960
+#define OUT_HEIGHT 720
 
 // Window settings
 #define MAIN_WIN "Ballcenter"
