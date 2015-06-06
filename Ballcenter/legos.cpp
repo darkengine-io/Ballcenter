@@ -115,7 +115,12 @@ namespace legos{
 			findSquares(cam.src, squares);
 			filter_squares(squares);
 			cam.src.copyTo(out);
-			drawSquares(cam.src, out, squares);
+			if (squares.size() > 0){
+				drawSquares(cam.src, out, squares);
+			}
+			else{
+				text_ovl(src, "no squares detected!", Point(0, 0), Scalar(255, 255, 255));
+			}
 			resize(out, out, Size(OUT_WIDTH, OUT_HEIGHT));
 			imshow(LEGO_WIN, out);
 			if (wait_for_key() == 106){
