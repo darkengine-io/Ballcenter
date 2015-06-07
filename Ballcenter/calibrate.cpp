@@ -85,7 +85,7 @@ namespace cal{
 		vector<Point> smallest_square;
 
 		float max_area = FLT_MAX;
-		float min_area = 20000;
+		float min_area = CAL_MIN_AREA;
 		int max_square_idx = 0;
 		const int n_points = 4;
 

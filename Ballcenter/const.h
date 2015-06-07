@@ -38,3 +38,4 @@
 #define LEGO_SQ_THRESH 200
 #define LEGO_ITER 30
 #define LEGO_COLOR 255,255,255
+#define CAL_MIN_AREA 40000
