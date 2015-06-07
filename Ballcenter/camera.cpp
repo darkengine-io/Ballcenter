@@ -78,3 +78,6 @@ void Camera::sortCorners(std::vector<cv::Point2f>& corners, cv::Point2f center)
 	corners.push_back(br);
 	corners.push_back(bl);
 }
+Camera::~Camera(){
+	cam.release();
+}

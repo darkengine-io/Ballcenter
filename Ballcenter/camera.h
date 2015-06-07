@@ -2,6 +2,7 @@
 
 class Camera{
 public:
+	~Camera();
 	cv::VideoCapture cam;
 	void get_frame();
 	void get_frame(bool do_perspective);
