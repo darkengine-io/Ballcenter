@@ -54,8 +54,9 @@ namespace legos{
 			Point sum = std::accumulate(squares[i].begin(), squares[i].end(), zero);
 			Point mean_point(sum.x / squares[i].size(), sum.y / squares[i].size());
 			Vec3b color = image.at<Vec3b>(mean_point);
-			drawSquare(out, squares[i], Scalar(color));
-			text_ovl(out, std::to_string(pick_dominant_color(color)), mean_point, Scalar(color));
+			drawSquare(out, squares[i], Scalar(0,0,0));
+			std::string color_names[] = { "blue", "green", "red" };
+			text_ovl(out, color_names[pick_dominant_color(color)], mean_point - Point(100,100), Scalar(0,0,0));
 			switch (pick_dominant_color(color))
 			{
 			case(0) :
