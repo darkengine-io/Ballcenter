@@ -63,7 +63,8 @@ namespace cal{
 				break;
 		}
 
-		cam.aoi = boundingRect(Mat(smallest_square) * ((float)IN_HEIGHT / (float)CAL_HEIGHT));
+		cam.aoi = Rect(0, 0, IN_WIDTH, IN_HEIGHT); // for compatibility with older code that relies on having cam.aoi set
+		cam.set_perspective(smallest_square);
 		destroyWindow(CAL_WIN);
 		cam.cam.set(CV_CAP_PROP_FRAME_WIDTH, IN_WIDTH);
 		cam.cam.set(CV_CAP_PROP_FRAME_HEIGHT, IN_HEIGHT);
