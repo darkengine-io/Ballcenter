@@ -31,8 +31,8 @@
 #define CAL_SQ_THRESH 1600
 #define CAL_ITER 2
 #define CAL_COLOR 255, 0, 0
-#define CAL_WIDTH 1600
-#define CAL_HEIGHT 1200
+#define CAL_WIDTH 1280
+#define CAL_HEIGHT 720
 
 // Calibration settings
 #define LEGO_SQ_THRESH 200
