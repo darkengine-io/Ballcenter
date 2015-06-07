@@ -188,15 +188,27 @@ void Tower_S::Draw(Mat &Screen)
 
 bool Tower_C::Reload(uint8_t * Data)
 {
+#ifdef RELOAD_ENABLE
 	return ((Ammo < 150) && (int(Data[2]) > 100));
+#else
+	return false;
+#endif
 }
 bool Tower_T::Reload(uint8_t * Data)
 {
+#ifdef RELOAD_ENABLE
 	return ((Ammo < 100) && (int(Data[2]) > 100));
+#else
+	return false;
+#endif
 }
 bool Tower_S::Reload(uint8_t * Data)
 {
+#ifdef RELOAD_ENABLE
 	return ((Ammo < 50) && (int(Data[2]) > 100));
+#else
+	return false;
+#endif
 }
 Point* Tower_C::ammoCircle(int i)
 {
