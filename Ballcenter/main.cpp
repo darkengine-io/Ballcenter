@@ -46,11 +46,6 @@ int main(int argc, char** argv)
 	Tower_T * TowerT = new Tower_T[TG];
 	Tower_S * TowerS = new Tower_S[TB];
 	start.set(TowerC, TowerT, TowerS);
-	if (argc < 2)
-	{
-		cout << " Usage: display_image ImageToLoadAndDisplay" << endl;
-		return -1;
-	}
 	Size Screen(OUT_WIDTH, OUT_HEIGHT);
 	cvNamedWindow(GAME_WIN, CV_WINDOW_NORMAL);
 	cvSetWindowProperty(GAME_WIN, CV_WND_PROP_FULLSCREEN, CV_WINDOW_FULLSCREEN);
